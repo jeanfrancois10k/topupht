@@ -669,38 +669,38 @@ INSERT INTO games (id, name, slug, description, status, display_order, is_active
 
 -- Game products seed (Free Fire)
 INSERT INTO game_products (id, game_id, name, sku, cost_provider, price_gamer, price_seller, price_pro_seller, price_partner, status) VALUES
-  ('p1a2b3c4-0001-0001-0001-000000000001'::UUID, 'f1a2b3c4-0001-0001-0001-000000000001'::UUID, 'Free Fire 100 Diamonds', 'FF-100', '85.00', '100.00', '95.00', '93.00', '90.00', 'ACTIVE'),
-  ('p1a2b3c4-0002-0002-0002-000000000002'::UUID, 'f1a2b3c4-0001-0001-0001-000000000001'::UUID, 'Free Fire 310 Diamonds', 'FF-310', '250.00', '300.00', '285.00', '280.00', '275.00', 'ACTIVE'),
-  ('p1a2b3c4-0003-0003-0003-000000000003'::UUID, 'f1a2b3c4-0001-0001-0001-000000000001'::UUID, 'Free Fire 520 Diamonds', 'FF-520', '400.00', '500.00', '475.00', '470.00', '465.00', 'ACTIVE'),
-  ('p1a2b3c4-0004-0004-0004-000000000004'::UUID, 'f1a2b3c4-0001-0001-0001-000000000004'::UUID, 'Free Fire 1060 Diamonds', 'FF-1060', '800.00', '1000.00', '950.00', '940.00', '930.00', 'ACTIVE');
+  ('f1a2b3c4-0001-0001-0001-000000000001'::UUID, 'f1a2b3c4-0001-0001-0001-000000000001'::UUID, 'Free Fire 100 Diamonds', 'FF-100', '85.00', '100.00', '95.00', '93.00', '90.00', 'ACTIVE'),
+  ('f1a2b3c4-0002-0002-0002-000000000002'::UUID, 'f1a2b3c4-0001-0001-0001-000000000001'::UUID, 'Free Fire 310 Diamonds', 'FF-310', '250.00', '300.00', '285.00', '280.00', '275.00', 'ACTIVE'),
+  ('f1a2b3c4-0003-0003-0003-000000000003'::UUID, 'f1a2b3c4-0001-0001-0001-000000000001'::UUID, 'Free Fire 520 Diamonds', 'FF-520', '400.00', '500.00', '475.00', '470.00', '465.00', 'ACTIVE'),
+  ('f1a2b3c4-0004-0004-0004-000000000004'::UUID, 'f1a2b3c4-0001-0001-0001-000000000004'::UUID, 'Free Fire 1060 Diamonds', 'FF-1060', '800.00', '1000.00', '950.00', '940.00', '930.00', 'ACTIVE');
 
 -- Game products seed (Mobile Legends)
 INSERT INTO game_products (id, game_id, name, sku, cost_provider, price_gamer, price_seller, price_pro_seller, price_partner, status) VALUES
-  ('p1a2b3c4-0005-0005-0005-000000000005'::UUID, 'f1a2b3c4-0002-0002-0002-000000000002'::UUID, 'MLBB 86 Diamond', 'ML-86', '70.00', '85.00', '80.00', '78.00', '76.00', 'ACTIVE'),
-  ('p1a2b3c4-0006-0006-0006-000000000006'::UUID, 'f1a2b3c4-0002-0002-0002-000000000002'::UUID, 'MLBB 172 Diamond', 'ML-172', '135.00', '170.00', '160.00', '158.00', '155.00', 'ACTIVE'),
-  ('p1a2b3c4-0007-0007-0007-000000000007'::UUID, 'f1a2b3c4-0002-0002-0002-000000000002'::UUID, 'MLBB 365 Diamond', 'ML-365', '280.00', '350.00', '330.00', '325.00', '320.00', 'ACTIVE');
+  ('f1a2b3c4-0005-0005-0005-000000000005'::UUID, 'f1a2b3c4-0002-0002-0002-000000000002'::UUID, 'MLBB 86 Diamond', 'ML-86', '70.00', '85.00', '80.00', '78.00', '76.00', 'ACTIVE'),
+  ('f1a2b3c4-0006-0006-0006-000000000006'::UUID, 'f1a2b3c4-0002-0002-0002-000000000002'::UUID, 'MLBB 172 Diamond', 'ML-172', '135.00', '170.00', '160.00', '158.00', '155.00', 'ACTIVE'),
+  ('f1a2b3c4-0007-0007-0007-000000000007'::UUID, 'f1a2b3c4-0002-0002-0002-000000000002'::UUID, 'MLBB 365 Diamond', 'ML-365', '280.00', '350.00', '330.00', '325.00', '320.00', 'ACTIVE');
 
 -- Game products seed (PUBG Mobile)
 INSERT INTO game_products (id, game_id, name, sku, cost_provider, price_gamer, price_seller, price_pro_seller, price_partner, status) VALUES
-  ('p1a2b3c4-0008-0008-0008-000000000008'::UUID, 'f1a2b3c4-0003-0003-0003-000000000003'::UUID, 'PUBG 60 UC', 'PUBG-60', '55.00', '70.00', '65.00', '63.00', '62.00', 'ACTIVE'),
-  ('p1a2b3c4-0009-0009-0009-000000000009'::UUID, 'f1a2b3c4-0003-0003-0003-000000000003'::UUID, 'PUBG 325 UC', 'PUBG-325', '280.00', '350.00', '330.00', '325.00', '320.00', 'ACTIVE'),
-  ('p1a2b3c4-0010-0010-0010-000000000010'::UUID, 'f1a2b3c4-0003-0003-0003-000000000010'::UUID, 'PUBG 660 UC', 'PUBG-660', '550.00', '680.00', '645.00', '640.00', '635.00', 'ACTIVE');
+  ('f1a2b3c4-0008-0008-0008-000000000008'::UUID, 'f1a2b3c4-0003-0003-0003-000000000003'::UUID, 'PUBG 60 UC', 'PUBG-60', '55.00', '70.00', '65.00', '63.00', '62.00', 'ACTIVE'),
+  ('f1a2b3c4-0009-0009-0009-000000000009'::UUID, 'f1a2b3c4-0003-0003-0003-000000000003'::UUID, 'PUBG 325 UC', 'PUBG-325', '280.00', '350.00', '330.00', '325.00', '320.00', 'ACTIVE'),
+  ('f1a2b3c4-0010-0010-0010-000000000010'::UUID, 'f1a2b3c4-0003-0003-0003-000000000010'::UUID, 'PUBG 660 UC', 'PUBG-660', '550.00', '680.00', '645.00', '640.00', '635.00', 'ACTIVE');
 
 -- Game products seed (Roblox)
 INSERT INTO game_products (id, game_id, name, sku, cost_provider, price_gamer, price_seller, price_pro_seller, price_partner, status) VALUES
-  ('p1a2b3c4-0011-0011-0011-000000000011'::UUID, 'f1a2b3c4-0004-0004-0004-000000000004'::UUID, 'Roblox 450 Robux', 'RBX-450', '4.50', '5.00', '4.75', '4.70', '4.65', 'ACTIVE'),
-  ('p1a2b3c4-0012-0012-0012-000000000012'::UUID, 'f1a2b3c4-0004-0004-0004-000000000004'::UUID, 'Roblox 1000 Robux', 'RBX-1000', '9.50', '10.50', '10.00', '9.90', '9.80', 'ACTIVE'),
-  ('p1a2b3c4-0013-0013-0013-000000000013'::UUID, 'f1a2b3c4-0004-0004-0004-000000000004'::UUID, 'Roblox 2200 Robux', 'RBX-2200', '20.00', '22.00', '21.00', '20.80', '20.50', 'ACTIVE');
+  ('f1a2b3c4-0011-0011-0011-000000000011'::UUID, 'f1a2b3c4-0004-0004-0004-000000000004'::UUID, 'Roblox 450 Robux', 'RBX-450', '4.50', '5.00', '4.75', '4.70', '4.65', 'ACTIVE'),
+  ('f1a2b3c4-0012-0012-0012-000000000012'::UUID, 'f1a2b3c4-0004-0004-0004-000000000004'::UUID, 'Roblox 1000 Robux', 'RBX-1000', '9.50', '10.50', '10.00', '9.90', '9.80', 'ACTIVE'),
+  ('f1a2b3c4-0013-0013-0013-000000000013'::UUID, 'f1a2b3c4-0004-0004-0004-000000000004'::UUID, 'Roblox 2200 Robux', 'RBX-2200', '20.00', '22.00', '21.00', '20.80', '20.50', 'ACTIVE');
 
 -- Game products seed (FC Mobile)
 INSERT INTO game_products (id, game_id, name, sku, cost_provider, price_gamer, price_seller, price_pro_seller, price_partner, status) VALUES
-  ('p1a2b3c4-0014-0014-0014-000000000014'::UUID, 'f1a2b3c4-0005-0005-0005-000000000005'::UUID, 'FC 600 Coins', 'FC-600', '100.00', '125.00', '118.00', '116.00', '114.00', 'ACTIVE'),
-  ('p1a2b3c4-0015-0015-0015-000000000015'::UUID, 'f1a2b3c4-0005-0005-0005-000000000005'::UUID, 'FC 1500 Coins', 'FC-1500', '240.00', '300.00', '285.00', '280.00', '275.00', 'ACTIVE');
+  ('f1a2b3c4-0014-0014-0014-000000000014'::UUID, 'f1a2b3c4-0005-0005-0005-000000000005'::UUID, 'FC 600 Coins', 'FC-600', '100.00', '125.00', '118.00', '116.00', '114.00', 'ACTIVE'),
+  ('f1a2b3c4-0015-0015-0015-000000000015'::UUID, 'f1a2b3c4-0005-0005-0005-000000000005'::UUID, 'FC 1500 Coins', 'FC-1500', '240.00', '300.00', '285.00', '280.00', '275.00', 'ACTIVE');
 
 -- Game products seed (eFootball)
 INSERT INTO game_products (id, game_id, name, sku, cost_provider, price_gamer, price_seller, price_pro_seller, price_partner, status) VALUES
-  ('p1a2b3c4-0016-0016-0016-000000000016'::UUID, 'f1a2b3c4-0006-0006-0006-000000000006'::UUID, 'eFootball 200 Coins', 'EF-200', '35.00', '50.00', '47.00', '46.00', '45.00', 'ACTIVE'),
-  ('p1a2b3c4-0017-0017-0017-000000000017'::UUID, 'f1a2b3c4-0006-0006-0006-000000000006'::UUID, 'eFootball 1200 Coins', 'EF-1200', '200.00', '250.00', '237.00', '235.00', '232.00', 'ACTIVE');
+  ('f1a2b3c4-0016-0016-0016-000000000016'::UUID, 'f1a2b3c4-0006-0006-0006-000000000006'::UUID, 'eFootball 200 Coins', 'EF-200', '35.00', '50.00', '47.00', '46.00', '45.00', 'ACTIVE'),
+  ('f1a2b3c4-0017-0017-0017-000000000017'::UUID, 'f1a2b3c4-0006-0006-0006-000000000006'::UUID, 'eFootball 1200 Coins', 'EF-1200', '200.00', '250.00', '237.00', '235.00', '232.00', 'ACTIVE');
 
 -- Default system settings
 INSERT INTO system_settings (id, key, value, label, description, is_public) VALUES
