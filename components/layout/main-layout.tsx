@@ -22,9 +22,7 @@ import {
   ChevronRight,
   Menu,
   X,
-  Settings,
-  UserPlus,
-} from "lucide-react";
+  } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -92,26 +90,9 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
         </Link>
 
         <div className="flex items-center gap-2">
-          {isAuthenticated ? (
-            <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden">
-              <Menu className="h-5 w-5" />
-            </Button>
-          ) : (
-            <>
-              <Link href="/auth/login" className="hidden rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800 hover:text-surface-100 md:block">
-                Se connecter
-              </Link>
-              <Link href="/auth/register" className="hidden rounded-lg px-3 py-2 text-sm font-medium text-brand-400 transition-colors hover:bg-surface-800 md:block">
-                <Button variant="ghost" size="sm" className="h-8 px-3 text-brand-400">
-                  <UserPlus className="h-4 w-4 mr-1" />
-                  S'inscrire
-                </Button>
-              </Link>
-              <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden">
-                <Menu className="h-5 w-5" />
-              </Button>
-            </>
-          )}
+          <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden">
+            <Menu className="h-5 w-5" />
+          </Button>
 
           {user && (
             <div className="flex items-center gap-2">
