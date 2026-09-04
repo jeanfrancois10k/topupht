@@ -11,7 +11,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 # GAME TOP-UP HAITI - Agent Instructions
 
 ## Project Overview
-Game Top-Up is a professional game recharge platform for Haiti, built with Next.js 16, React 19, Supabase, and Tailwind CSS 4.
+TOPUP+ is a professional game recharge platform for Haiti, built with Next.js 16, React 19, Supabase, and Tailwind CSS 4.
 
 ## Key Architecture Decisions
 

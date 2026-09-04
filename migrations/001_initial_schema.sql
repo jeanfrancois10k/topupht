@@ -704,7 +704,7 @@ INSERT INTO game_products (id, game_id, name, sku, cost_provider, price_gamer, p
 
 -- Default system settings
 INSERT INTO system_settings (id, key, value, label, description, is_public) VALUES
-  ('s1', 'platform_name', '"Game Top-Up"', 'Nom de la plateforme', 'Nom affiché dans l''application', true),
+  ('s1', 'platform_name', '"TOPUP+"', 'Nom de la plateforme', 'Nom affiché dans l''application', true),
   ('s2', 'default_currency', '"HTG"', 'Devise par défaut', 'Devise utilisée par défaut', true),
   ('s3', 'platform_url', '"http://localhost:3000"', 'URL de la plateforme', 'URL de base de l''application', true),
   ('s4', 'seller_commission_rate', '10.00', 'Taux de commission vendeur', 'Pourcentage de commission sur les ventes', false),

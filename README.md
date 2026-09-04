@@ -4,7 +4,7 @@ La plateforme professionnelle de recharge de jeux vidéo destinée au marché af
 
 ## Présentation
 
-Game Top-Up est une plateforme moderne permettant aux gamers d'acheter automatiquement des recharges de jeux (diamants, crédits), aux utilisateurs sans moyen de paiement de trouver un vendeur de confiance, et aux gamers de devenir vendeurs/revendeurs.
+TOPUP+ est une plateforme moderne permettant aux gamers d'acheter automatiquement des recharges de jeux (diamants, crédits), aux utilisateurs sans moyen de paiement de trouver un vendeur de confiance, et aux gamers de devenir vendeurs/revendeurs.
 
 ## Stack Technique
 
@@ -44,7 +44,7 @@ Game Top-Up est une plateforme moderne permettant aux gamers d'acheter automatiq
 ```bash
 # 1. Cloner le dépôt
 git clone <repository-url>
-cd game-topup
+cd topup
 
 # 2. Installer les dépendances
 npm install
@@ -69,7 +69,7 @@ npm run dev
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Clé anon Supabase | `eyJhbGci...` |
 | `SUPABASE_SERVICE_ROLE_KEY` | Clé service role | `eyJhbGci...` |
 | `NEXT_PUBLIC_PLATFORM_URL` | URL de la plateforme | `http://localhost:3000` |
-| `NEXT_PUBLIC_PLATFORM_NAME` | Nom de la plateforme | `Game Top-Up` |
+| `NEXT_PUBLIC_PLATFORM_NAME` | Nom de la plateforme | `TOPUP+` |
 
 ## Fonctionnalités
 
@@ -140,4 +140,4 @@ npx supabase db push
 
 ## Licence
 
-Propriétaire - Game Top-Up © 2026
+Propriétaire - TOPUP+ © 2026

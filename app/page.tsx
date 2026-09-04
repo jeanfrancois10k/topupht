@@ -8,17 +8,18 @@ import { PopularGames } from "@/components/features/home/popular-games";
 import { HowItWorks } from "@/components/features/home/how-it-works";
 import { WhyChooseUs } from "@/components/features/home/why-choose-us";
 import { Footer } from "@/components/layout/footer";
+import { MainLayout } from "@/components/layout/main-layout";
 import { Gamepad2, Store, Gift, Users } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Game Top-Up",
+  title: "TOPUP+",
   description: "La plateforme #1 de recharge de jeux à Africa. Achète tes diamants et crédits rapidement. Pas de moyen de paiement ? Trouve un vendeur.",
   keywords: ["recharge jeux", "diamants free fire", "top-up jeux", "mobile legends", "pubg", "roblox"],
 };
 
 export default function HomePage() {
   return (
-    <main>
+    <MainLayout>
       <Hero />
       <PopularGames />
       <HowItWorks />
@@ -101,6 +102,6 @@ export default function HomePage() {
       </section>
 
       <Footer />
-    </main>
+    </MainLayout>
   );
 }

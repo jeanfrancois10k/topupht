@@ -7,7 +7,7 @@ import { ArrowRight, Gamepad2, Store, Users } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-surface-950 via-surface-900 to-brand-950/30">
+    <section className="relative overflow-hidden bg-gradient-to-b from-surface-950 via-surface-900 to-brand-900/30">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(239,68,68,0.15),transparent_60%)]" />
       <div className="relative container-custom py-16 md:py-24 lg:py-32">
         <div className="grid gap-8 lg:grid-cols-2 lg:items-center">

@@ -5,17 +5,17 @@ import { AuthProvider } from "@/components/features/auth/auth-provider";
 
 export const metadata: Metadata = {
   title: {
-    default: "Game Top-Up",
-    template: "%s | Game Top-Up",
+    default: "TOPUP+",
+    template: "%s | TOPUP+",
   },
   description: "La plateforme #1 de recharge de jeux à Africa. Achète tes diamants et crédits rapidement.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_PLATFORM_URL || "http://localhost:3000"),
   openGraph: {
-    title: "Game Top-Up",
+    title: "TOPUP+",
     description: "La plateforme #1 de recharge de jeux à Africa.",
     type: "website",
     locale: "fr_HT",
-    siteName: "Game Top-Up",
+    siteName: "TOPUP+",
   },
   robots: {
     index: true,

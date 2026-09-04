@@ -13,7 +13,7 @@ export function Footer() {
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600">
                 <Gamepad2 className="h-5 w-5 text-white" />
               </div>
-              <span className="text-lg font-bold text-white">Game Top-Up</span>
+              <span className="text-lg font-bold text-white">TOPUP+</span>
             </div>
             <p className="mt-3 text-sm text-surface-400">La plateforme #1 de recharge de jeux à Africa.</p>
           </div>
@@ -29,7 +29,7 @@ export function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-white">Contact</h4>
             <div className="mt-4 space-y-2">
-              <p className="text-sm text-surface-400">support@game-topup.com</p>
+              <p className="text-sm text-surface-400">support@topup.com</p>
               <p className="text-sm text-surface-400">+509 XXX XXX XXX</p>
               <Badge variant="warning">Disponible 7j/7</Badge>
             </div>
@@ -46,7 +46,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t border-surface-800 pt-6 text-center">
-          <p className="text-xs text-surface-500">© {new Date().getFullYear()} Game Top-Up. Tous droits réservés.</p>
+          <p className="text-xs text-surface-500">© {new Date().getFullYear()} TOPUP+. Tous droits réservés.</p>
         </div>
       </div>
     </footer>

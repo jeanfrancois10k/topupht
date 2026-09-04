@@ -13,7 +13,7 @@ export function WhyChooseUs() {
   return (
     <section className="border-t border-surface-800 bg-surface-950 py-16">
       <div className="container-custom">
-        <h2 className="text-3xl font-bold text-white text-center mb-12">Pourquoi choisir Game Top-Up</h2>
+        <h2 className="text-3xl font-bold text-white text-center mb-12">Pourquoi choisir TOPUP+</h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((feature) => {
             const Icon = feature.icon;

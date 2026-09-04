@@ -37,7 +37,7 @@ export default function AdminSettingsPage() {
           <form onSubmit={handleSave} className="space-y-4">
             <div>
               <Label>Nom de la plateforme</Label>
-              <Input defaultValue="Game Top-Up" className="mt-1" />
+              <Input defaultValue="TOPUP+" className="mt-1" />
             </div>
             <div>
               <Label>Devise par défaut</Label>
@@ -45,7 +45,7 @@ export default function AdminSettingsPage() {
             </div>
             <div>
               <Label>Email de support</Label>
-              <Input type="email" defaultValue="support@game-topup.com" className="mt-1" />
+              <Input type="email" defaultValue="support@topup.com" className="mt-1" />
             </div>
             <div>
               <Label>WhatsApp support</Label>

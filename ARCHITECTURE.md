@@ -2,7 +2,7 @@
 
 ## Vue d'Ensemble
 
-L'architecture de Game Top-Up est conçue pour être modulaire, sécurisée et évolutive. Elle suit les principes suivants :
+L'architecture de TOPUP+ est conçue pour être modulaire, sécurisée et évolutive. Elle suit les principes suivants :
 
 - **Séparation des responsabilités** : UI, logique métier, et accès aux données sont séparés
 - **Sécurité** : RLS activé, secrets côté serveur, validation côté serveur
@@ -13,7 +13,7 @@ L'architecture de Game Top-Up est conçue pour être modulaire, sécurisée et �
 ## Structure du Projet
 
 ```
-game-topup/
+topup/
 ├── app/                      # Next.js App Router
 │   ├── layout.tsx           # Layout racine avec MainLayout et AuthProvider
 │   ├── page.tsx             # Homepage publique

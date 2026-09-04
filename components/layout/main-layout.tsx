@@ -1,10 +1,8 @@
 "use client";
 
 import { useAuth } from "@/hooks/use-auth";
-import { useAuthStore } from "@/stores/auth-store";
 import { NavLink } from "./nav-link";
 import { Avatar } from "@/components/ui/avatar";
-import { WalletIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import {
@@ -17,16 +15,15 @@ import {
   HelpCircle,
   Tag,
   Store,
-  PlusCircle,
-  Settings,
-  BarChart3,
-  Users,
   Package,
   Activity,
   Shield,
   FileText,
   ChevronLeft,
   ChevronRight,
+  LogIn,
+  Settings,
+  UserPlus,
 } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
@@ -46,39 +43,34 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
     );
   }
 
-  if (!isAuthenticated) {
-    return <>{children}</>;
-  }
-
   const isSeller = profile?.role === "SELLER" || profile?.role === "PRO_SELLER" || profile?.role === "PARTNER";
   const isAdmin = profile?.role === "ADMIN" || profile?.role === "SUPER_ADMIN";
 
   const gamerLinks = [
-    { href: "/dashboard", label: "Tableau de bord", icon: <Home className="h-4 w-4" /> },
     { href: "/games", label: "Jeux", icon: <Gamepad2 className="h-4 w-4" /> },
     { href: "/orders", label: "Commandes", icon: <ShoppingBag className="h-4 w-4" /> },
-    { href: "/wallet", label: "Portefeuille", icon: <WalletIcon className="h-4 w-4" /> },
+    { href: "/wallet", label: "Portefeuille", icon: <Wallet className="h-4 w-4" /> },
     { href: "/promotions", label: "Promotions", icon: <Gift className="h-4 w-4" /> },
     { href: "/support", label: "Support", icon: <HelpCircle className="h-4 w-4" /> },
   ];
 
   const sellerLinks = [
-    { href: "/seller", label: "Dashboard", icon: <Home className="h-4 w-4" /> },
+    { href: "/seller", label: "Dashboard", icon: <Store className="h-4 w-4" /> },
     { href: "/seller/products", label: "Produits", icon: <Package className="h-4 w-4" /> },
     { href: "/seller/orders", label: "Commandes", icon: <ShoppingBag className="h-4 w-4" /> },
-    { href: "/seller/wallet", label: "Portefeuille", icon: <WalletIcon className="h-4 w-4" /> },
+    { href: "/seller/wallet", label: "Portefeuille", icon: <Wallet className="h-4 w-4" /> },
     { href: "/seller/commissions", label: "Commissions", icon: <Activity className="h-4 w-4" /> },
     { href: "/seller/withdrawals", label: "Retraits", icon: <Tag className="h-4 w-4" /> },
   ];
 
   const adminLinks = [
-    { href: "/admin/dashboard", label: "Tableau de bord", icon: <BarChart3 className="h-4 w-4" /> },
-    { href: "/admin/users", label: "Utilisateurs", icon: <Users className="h-4 w-4" /> },
+    { href: "/admin/dashboard", label: "Tableau de bord", icon: <Gamepad2 className="h-4 w-4" /> },
+    { href: "/admin/users", label: "Utilisateurs", icon: <User className="h-4 w-4" /> },
     { href: "/admin/sellers", label: "Vendeurs", icon: <Store className="h-4 w-4" /> },
     { href: "/admin/games", label: "Jeux", icon: <Gamepad2 className="h-4 w-4" /> },
     { href: "/admin/products", label: "Produits", icon: <Package className="h-4 w-4" /> },
     { href: "/admin/orders", label: "Commandes", icon: <ShoppingBag className="h-4 w-4" /> },
-    { href: "/admin/wallets", label: "Portefeuilles", icon: <WalletIcon className="h-4 w-4" /> },
+    { href: "/admin/wallets", label: "Portefeuilles", icon: <Wallet className="h-4 w-4" /> },
     { href: "/admin/withdrawals", label: "Retraits", icon: <Tag className="h-4 w-4" /> },
     { href: "/admin/commissions", label: "Commissions", icon: <Activity className="h-4 w-4" /> },
     { href: "/admin/support", label: "Support", icon: <HelpCircle className="h-4 w-4" /> },
@@ -88,95 +80,104 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
   ];
 
   return (
-    <div className="flex h-screen overflow-hidden bg-surface-950">
-      {/* Sidebar */}
-      <aside className={`${sidebarCollapsed ? "w-16" : "w-60"} relative hidden h-full flex-col border-r border-surface-700 bg-surface-900 transition-all duration-200 lg:flex`}>
-        <div className="flex h-16 items-center justify-center border-b border-surface-700">
-          {!sidebarCollapsed && (
-            <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600">
-                <Gamepad2 className="h-5 w-5 text-white" />
-              </div>
-              <span className="text-sm font-bold text-white">GAME TOP-UP</span>
-            </Link>
-          )}
-          {sidebarCollapsed && (
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600">
-              <Gamepad2 className="h-5 w-5 text-white" />
-            </div>
-          )}
-        </div>
+    <div className="flex flex-col min-h-screen bg-surface-950">
+      {/* Public header */}
+      <header className="sticky top-0 z-50 flex h-16 items-center justify-between border-b border-surface-700 bg-surface-900 px-4 lg:px-6">
+        <Link href="/" className="flex items-center gap-2">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600">
+            <Gamepad2 className="h-5 w-5 text-white" />
+          </div>
+          <span className="text-sm font-bold text-white">TOPUP+</span>
+        </Link>
 
-        <nav className="flex-1 overflow-y-auto py-4">
-          {isAdmin && (
+        <nav className="hidden items-center gap-1 md:flex">
+          <Link href="/games" className="rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800 hover:text-surface-100">Jeux</Link>
+          <Link href="/find-seller" className="rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800 hover:text-surface-100">Trouver un vendeur</Link>
+          <Link href="/support" className="rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800 hover:text-surface-100">Support</Link>
+          {isAuthenticated ? (
+            <Link href="/dashboard" className="rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800 hover:text-surface-100">Dashboard</Link>
+          ) : (
             <>
-              <p className={`px-3 text-[10px] font-semibold uppercase tracking-wider text-surface-500 ${sidebarCollapsed ? "" : ""}`}>Administration</p>
-              {adminLinks.map((link) => (
-                <NavLink key={link.href} href={link.href} icon={link.icon}>{!sidebarCollapsed && link.label}</NavLink>
-              ))}
-              <Separator className="my-3" />
-            </>
-          )}
-
-          {isSeller && (
-            <>
-              <p className="px-3 text-[10px] font-semibold uppercase tracking-wider text-surface-500">Vendeur</p>
-              {sellerLinks.map((link) => (
-                <NavLink key={link.href} href={link.href} icon={link.icon}>{!sidebarCollapsed && link.label}</NavLink>
-              ))}
-              <Separator className="my-3" />
-            </>
-          )}
-
-          {!isAdmin && !isSeller && (
-            <>
-              <p className="px-3 text-[10px] font-semibold uppercase tracking-wider text-surface-500">Navigation</p>
-              {gamerLinks.map((link) => (
-                <NavLink key={link.href} href={link.href} icon={link.icon}>{!sidebarCollapsed && link.label}</NavLink>
-              ))}
-              <Separator className="my-3" />
+              <Link href="/auth/login" className="rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800 hover:text-surface-100">Se connecter</Link>
+              <Link href="/auth/register" className="rounded-lg px-3 py-2 text-sm font-medium text-brand-400 transition-colors hover:bg-surface-800">
+                <Button variant="ghost" size="sm" className="h-8 px-3 text-brand-400">
+                  <UserPlus className="h-4 w-4 mr-1" />
+                  S'inscrire
+                </Button>
+              </Link>
             </>
           )}
         </nav>
 
-        <button onClick={() => setSidebarCollapsed(!sidebarCollapsed)} className="absolute -right-3 top-16 flex h-6 w-6 items-center justify-center rounded-full border border-surface-700 bg-surface-800 text-surface-400 hover:text-white">
-          {sidebarCollapsed ? <ChevronRight className="h-3 w-3" /> : <ChevronLeft className="h-3 w-3" />}
-        </button>
-      </aside>
-
-      {/* Main content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <header className="flex h-16 items-center justify-between border-b border-surface-700 bg-surface-900 px-4 lg:px-6">
-          <div className="flex items-center gap-4">
-            {sidebarCollapsed && (
-              <button onClick={() => setSidebarCollapsed(false)} className="lg:hidden">
-                <ChevronRight className="h-5 w-5 text-surface-400" />
-              </button>
-            )}
-            <div className="md:hidden">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600">
-                <Gamepad2 className="h-5 w-5 text-white" />
-              </div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            {user && (
-              <div className="flex items-center gap-2">
-                <Avatar src={user.avatar_url ?? undefined} alt={user.full_name ?? user.email ?? "User"} />
-                <div className="hidden md:block">
-                  <p className="text-sm font-medium text-surface-200">{user.full_name ?? user.email}</p>
-                  <p className={`text-xs ${getRoleColor(user.role ?? "GAMER")} rounded-full px-2 py-0.5 inline-block`}>{getRoleLabel(user.role ?? "GAMER")}</p>
-                </div>
-              </div>
-            )}
-            <Button variant="ghost" size="icon" onClick={signOut}>
+        {user && (
+          <div className="flex items-center gap-2">
+            <Avatar src={user.avatar_url ?? undefined} alt={user.full_name ?? user.email ?? "User"} />
+            <Button variant="ghost" size="icon" onClick={signOut} className="h-8 w-8">
               <User className="h-4 w-4" />
             </Button>
           </div>
-        </header>
+        )}
+      </header>
 
-        <main className="flex-1 overflow-y-auto bg-surface-950 p-4 lg:p-6">{children}</main>
+      <div className="flex flex-1 overflow-hidden">
+        {isAuthenticated && (
+          <aside className={`${sidebarCollapsed ? "w-16" : "w-60"} relative hidden h-full flex-col border-r border-surface-700 bg-surface-900 transition-all duration-200 lg:flex`}>
+            <div className="flex h-16 items-center justify-center border-b border-surface-700">
+              {!sidebarCollapsed && (
+                <Link href="/" className="flex items-center gap-2">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600">
+                    <Gamepad2 className="h-5 w-5 text-white" />
+                  </div>
+                  <span className="text-sm font-bold text-white">TOPUP+</span>
+                </Link>
+              )}
+              {sidebarCollapsed && (
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600">
+                  <Gamepad2 className="h-5 w-5 text-white" />
+                </div>
+              )}
+            </div>
+
+            <nav className="flex-1 overflow-y-auto py-4">
+              {isAdmin && (
+                <>
+                  <p className="px-3 text-[10px] font-semibold uppercase tracking-wider text-surface-500">Administration</p>
+                  {adminLinks.map((link) => (
+                    <NavLink key={link.href} href={link.href} icon={link.icon}>{!sidebarCollapsed && link.label}</NavLink>
+                  ))}
+                  <Separator className="my-3" />
+                </>
+              )}
+              {isSeller && (
+                <>
+                  <p className="px-3 text-[10px] font-semibold uppercase tracking-wider text-surface-500">Vendeur</p>
+                  {sellerLinks.map((link) => (
+                    <NavLink key={link.href} href={link.href} icon={link.icon}>{!sidebarCollapsed && link.label}</NavLink>
+                  ))}
+                  <Separator className="my-3" />
+                </>
+              )}
+              {!isAdmin && !isSeller && (
+                <>
+                  <p className="px-3 text-[10px] font-semibold uppercase tracking-wider text-surface-500">Navigation</p>
+                  {gamerLinks.map((link) => (
+                    <NavLink key={link.href} href={link.href} icon={link.icon}>{!sidebarCollapsed && link.label}</NavLink>
+                  ))}
+                  <Separator className="my-3" />
+                </>
+              )}
+            </nav>
+
+            <button onClick={() => setSidebarCollapsed(!sidebarCollapsed)} className="absolute -right-3 top-16 flex h-6 w-6 items-center justify-center rounded-full border border-surface-700 bg-surface-800 text-surface-400 hover:text-white">
+              {sidebarCollapsed ? <ChevronRight className="h-3 w-3" /> : <ChevronLeft className="h-3 w-3" />}
+            </button>
+          </aside>
+        )}
+
+        {/* Main content */}
+        <main className={`flex-1 overflow-y-auto bg-surface-950 ${isAuthenticated ? "p-4 lg:p-6" : ""}`}>
+          {children}
+        </main>
       </div>
     </div>
   );
