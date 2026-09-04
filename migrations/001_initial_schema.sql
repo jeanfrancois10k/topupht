@@ -582,7 +582,7 @@ ALTER TABLE system_settings ENABLE ROW LEVEL SECURITY;
 -- Profiles policies
 CREATE POLICY "Users can view own profile" ON profiles FOR SELECT USING (auth.uid() = id);
 CREATE POLICY "Users can update own profile" ON profiles FOR UPDATE USING (auth.uid() = id);
-CREATE POLICY "Everyone can view active profiles" ON profiles FOR SELECT USING (true) WITH CHECK (true);
+CREATE POLICY "Everyone can view active profiles" ON profiles FOR SELECT USING (true);
 
 -- Public read access for active games and products
 CREATE POLICY "Anyone can view active games" ON games FOR SELECT USING (is_active = true AND status = 'ACTIVE');
