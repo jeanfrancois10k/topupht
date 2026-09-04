@@ -515,14 +515,14 @@ SELECT
   COUNT(DISTINCT o.id) AS total_orders,
   COALESCE(SUM(o.amount)::NUMERIC, 0) AS total_sales,
   COALESCE(SUM(c.amount)::NUMERIC, 0) AS total_commissions,
-  COALESCE(SUM(wt.amount)::NUMERIC, 0) AS total_withdrawals,
-  w.balance AS current_balance
+  COALESCE(SUM(wt_withdraw.amount)::NUMERIC, 0) AS total_withdrawals,
+  wal.balance AS current_balance
 FROM seller_profiles sp
 LEFT JOIN orders o ON sp.user_id = o.user_id AND o.status = 'SUCCESS'
 LEFT JOIN commissions c ON sp.user_id = c.seller_id AND c.status IN ('EARNED', 'PAID')
-LEFT JOIN withdrawals w ON sp.user_id = w.seller_id
-LEFT JOIN wallets w ON sp.user_id = w.user_id
-GROUP BY sp.user_id, w.balance;
+LEFT JOIN withdrawals wt_withdraw ON sp.user_id = wt_withdraw.seller_id
+LEFT JOIN wallets wal ON sp.user_id = wal.user_id
+GROUP BY sp.user_id, wal.balance;
 
 -- ============================================
 -- FUNCTIONS
