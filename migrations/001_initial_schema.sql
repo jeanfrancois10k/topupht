@@ -672,7 +672,7 @@ INSERT INTO game_products (id, game_id, name, sku, cost_provider, price_gamer, p
   ('f1a2b3c4-0001-0001-0001-000000000001'::UUID, 'f1a2b3c4-0001-0001-0001-000000000001'::UUID, 'Free Fire 100 Diamonds', 'FF-100', '85.00', '100.00', '95.00', '93.00', '90.00', 'ACTIVE'),
   ('f1a2b3c4-0002-0002-0002-000000000002'::UUID, 'f1a2b3c4-0001-0001-0001-000000000001'::UUID, 'Free Fire 310 Diamonds', 'FF-310', '250.00', '300.00', '285.00', '280.00', '275.00', 'ACTIVE'),
   ('f1a2b3c4-0003-0003-0003-000000000003'::UUID, 'f1a2b3c4-0001-0001-0001-000000000001'::UUID, 'Free Fire 520 Diamonds', 'FF-520', '400.00', '500.00', '475.00', '470.00', '465.00', 'ACTIVE'),
-  ('f1a2b3c4-0004-0004-0004-000000000004'::UUID, 'f1a2b3c4-0001-0001-0001-000000000004'::UUID, 'Free Fire 1060 Diamonds', 'FF-1060', '800.00', '1000.00', '950.00', '940.00', '930.00', 'ACTIVE');
+  ('f1a2b3c4-0004-0004-0004-000000000004'::UUID, 'f1a2b3c4-0001-0001-0001-000000000001'::UUID, 'Free Fire 1060 Diamonds', 'FF-1060', '800.00', '1000.00', '950.00', '940.00', '930.00', 'ACTIVE');
 
 -- Game products seed (Mobile Legends)
 INSERT INTO game_products (id, game_id, name, sku, cost_provider, price_gamer, price_seller, price_pro_seller, price_partner, status) VALUES
@@ -684,7 +684,7 @@ INSERT INTO game_products (id, game_id, name, sku, cost_provider, price_gamer, p
 INSERT INTO game_products (id, game_id, name, sku, cost_provider, price_gamer, price_seller, price_pro_seller, price_partner, status) VALUES
   ('f1a2b3c4-0008-0008-0008-000000000008'::UUID, 'f1a2b3c4-0003-0003-0003-000000000003'::UUID, 'PUBG 60 UC', 'PUBG-60', '55.00', '70.00', '65.00', '63.00', '62.00', 'ACTIVE'),
   ('f1a2b3c4-0009-0009-0009-000000000009'::UUID, 'f1a2b3c4-0003-0003-0003-000000000003'::UUID, 'PUBG 325 UC', 'PUBG-325', '280.00', '350.00', '330.00', '325.00', '320.00', 'ACTIVE'),
-  ('f1a2b3c4-0010-0010-0010-000000000010'::UUID, 'f1a2b3c4-0003-0003-0003-000000000010'::UUID, 'PUBG 660 UC', 'PUBG-660', '550.00', '680.00', '645.00', '640.00', '635.00', 'ACTIVE');
+  ('f1a2b3c4-0010-0010-0010-000000000010'::UUID, 'f1a2b3c4-0003-0003-0003-000000000003'::UUID, 'PUBG 660 UC', 'PUBG-660', '550.00', '680.00', '645.00', '640.00', '635.00', 'ACTIVE');
 
 -- Game products seed (Roblox)
 INSERT INTO game_products (id, game_id, name, sku, cost_provider, price_gamer, price_seller, price_pro_seller, price_partner, status) VALUES
