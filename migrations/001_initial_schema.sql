@@ -644,11 +644,15 @@ CREATE POLICY "Users can create own tickets" ON support_tickets FOR INSERT WITH 
 CREATE POLICY "Users can update own tickets" ON support_tickets FOR UPDATE USING (auth.uid() = user_id);
 
 -- Audit logs - admin only (via service role)
-CREATE POLICY "Admin full access to audit logs" ON audit_logs FOR ALL USING (true);
+CREATE POLICY "Admin full access to audit logs" ON audit_logs FOR SELECT USING (true);
+CREATE POLICY "Admin can insert audit logs" ON audit_logs FOR INSERT WITH CHECK (true);
+CREATE POLICY "Admin can update audit logs" ON audit_logs FOR UPDATE USING (true) WITH CHECK (true);
 
 -- System settings
 CREATE POLICY "Anyone can view public settings" ON system_settings FOR SELECT USING (is_public = true);
-CREATE POLICY "Admin can manage settings" ON system_settings FOR ALL USING (true);
+CREATE POLICY "Admin can view settings" ON system_settings FOR SELECT USING (true);
+CREATE POLICY "Admin can insert settings" ON system_settings FOR INSERT WITH CHECK (true);
+CREATE POLICY "Admin can update settings" ON system_settings FOR UPDATE USING (true) WITH CHECK (true);
 
 -- ============================================
 -- SEED DATA (DEVELOPMENT ONLY)
