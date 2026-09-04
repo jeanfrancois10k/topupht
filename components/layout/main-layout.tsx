@@ -26,14 +26,11 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { getRoleLabel, getRoleColor } from "@/lib/utils";
 
 export function MainLayout({ children }: { children: React.ReactNode }) {
   const { user, profile, isLoading, isAuthenticated, signOut } = useAuth();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const pathname = usePathname();
 
   if (isLoading) {
     return (
@@ -81,7 +78,7 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex flex-col min-h-screen bg-surface-950">
-      {/* Public header */}
+      {/* Header */}
       <header className="sticky top-0 z-50 flex h-16 items-center justify-between border-b border-surface-700 bg-surface-900 px-4 lg:px-6">
         <Link href="/" className="flex items-center gap-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600">
@@ -90,7 +87,33 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
           <span className="text-sm font-bold text-white">TOPUP+</span>
         </Link>
 
+        {/* Desktop nav */}
+        <nav className="hidden items-center gap-1 md:flex">
+          {isAuthenticated ? (
+            <>
+              {(isAdmin ? adminLinks.slice(0, 4) : isSeller ? sellerLinks.slice(0, 3) : gamerLinks.slice(0, 3)).map((link) => (
+                <Link key={link.href} href={link.href} className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800 hover:text-surface-100">
+                  {link.icon}
+                  {link.label}
+                </Link>
+              ))}
+              <Link href={isAdmin ? "/admin/dashboard" : isSeller ? "/seller" : "/dashboard"} className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800 hover:text-surface-100">
+                Dashboard
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link href="/games" className="rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800 hover:text-surface-100">Jeux</Link>
+              <Link href="/find-seller" className="rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800 hover:text-surface-100">Trouver un vendeur</Link>
+              <Link href="/support" className="rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800 hover:text-surface-100">Support</Link>
+              <Link href="/auth/login" className="rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800 hover:text-surface-100">Se connecter</Link>
+              <Link href="/auth/register" className="rounded-lg px-3 py-2 text-sm font-medium text-brand-400 transition-colors hover:bg-surface-800">S'inscrire</Link>
+            </>
+          )}
+        </nav>
+
         <div className="flex items-center gap-2">
+          {/* Mobile hamburger */}
           <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden">
             <Menu className="h-5 w-5" />
           </Button>
@@ -123,93 +146,61 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
                 <Link href="/support" className="block w-full rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800" onClick={() => setMobileMenuOpen(false)}>Support</Link>
               </>
             ) : isAdmin ? (
-              <>
-                {adminLinks.map((link) => (
-                  <NavLink key={link.href} href={link.href} icon={link.icon} onClick={() => setMobileMenuOpen(false)}>{link.label}</NavLink>
-                ))}
-              </>
+              adminLinks.map((link) => (
+                <NavLink key={link.href} href={link.href} icon={link.icon} onClick={() => setMobileMenuOpen(false)}>{link.label}</NavLink>
+              ))
             ) : isSeller ? (
-              <>
-                {sellerLinks.map((link) => (
-                  <NavLink key={link.href} href={link.href} icon={link.icon} onClick={() => setMobileMenuOpen(false)}>{link.label}</NavLink>
-                ))}
-              </>
+              sellerLinks.map((link) => (
+                <NavLink key={link.href} href={link.href} icon={link.icon} onClick={() => setMobileMenuOpen(false)}>{link.label}</NavLink>
+              ))
             ) : (
-              <>
-                {gamerLinks.map((link) => (
-                  <NavLink key={link.href} href={link.href} icon={link.icon} onClick={() => setMobileMenuOpen(false)}>{link.label}</NavLink>
-                ))}
-              </>
+              gamerLinks.map((link) => (
+                <NavLink key={link.href} href={link.href} icon={link.icon} onClick={() => setMobileMenuOpen(false)}>{link.label}</NavLink>
+              ))
             )}
           </div>
         </div>
       )}
 
       <div className="flex flex-1 overflow-hidden">
+        {/* Desktop sidebar — no logo, only links */}
         {isAuthenticated && (
-          <>
-            {/* Desktop sidebar */}
-            <aside className={`${sidebarCollapsed ? "w-16" : "w-60"} relative hidden h-full flex-col border-r border-surface-700 bg-surface-900 transition-all duration-200 lg:flex`}>
-              <div className="flex h-16 items-center justify-center border-b border-surface-700">
-                {!sidebarCollapsed && (
-                  <Link href="/" className="flex items-center gap-2">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600">
-                      <Gamepad2 className="h-5 w-5 text-white" />
-                    </div>
-                    <span className="text-sm font-bold text-white">TOPUP+</span>
-                  </Link>
-                )}
-                {sidebarCollapsed && (
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600">
-                    <Gamepad2 className="h-5 w-5 text-white" />
-                  </div>
-                )}
-              </div>
+          <aside className={`${sidebarCollapsed ? "w-16" : "w-60"} relative hidden h-full flex-col border-r border-surface-700 bg-surface-900 transition-all duration-200 lg:flex`}>
+            <div className="flex h-16 items-center border-b border-surface-700 px-4">
+              {!sidebarCollapsed && (
+                <span className="text-xs font-semibold uppercase tracking-wider text-surface-500">
+                  {isAdmin ? "Admin" : isSeller ? "Vendeur" : "Menu"}
+                </span>
+              )}
+            </div>
 
-              <nav className="flex-1 overflow-y-auto py-4">
-                {isAdmin && (
-                  <>
-                    <p className="px-3 text-[10px] font-semibold uppercase tracking-wider text-surface-500">Administration</p>
-                    {adminLinks.map((link) => (
-                      <NavLink key={link.href} href={link.href} icon={link.icon}>{!sidebarCollapsed && link.label}</NavLink>
-                    ))}
-                    <Separator className="my-3" />
-                  </>
-                )}
-                {isSeller && (
-                  <>
-                    <p className="px-3 text-[10px] font-semibold uppercase tracking-wider text-surface-500">Vendeur</p>
-                    {sellerLinks.map((link) => (
-                      <NavLink key={link.href} href={link.href} icon={link.icon}>{!sidebarCollapsed && link.label}</NavLink>
-                    ))}
-                    <Separator className="my-3" />
-                  </>
-                )}
-                {!isAdmin && !isSeller && (
-                  <>
-                    <p className="px-3 text-[10px] font-semibold uppercase tracking-wider text-surface-500">Navigation</p>
-                    {gamerLinks.map((link) => (
-                      <NavLink key={link.href} href={link.href} icon={link.icon}>{!sidebarCollapsed && link.label}</NavLink>
-                    ))}
-                    <Separator className="my-3" />
-                  </>
-                )}
-              </nav>
-
-              <button onClick={() => setSidebarCollapsed(!sidebarCollapsed)} className="absolute -right-3 top-16 flex h-6 w-6 items-center justify-center rounded-full border border-surface-700 bg-surface-800 text-surface-400 hover:text-white">
-                {sidebarCollapsed ? <ChevronRight className="h-3 w-3" /> : <ChevronLeft className="h-3 w-3" />}
-              </button>
-            </aside>
-
-            {/* Mobile bottom nav */}
-            <nav className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-around border-t border-surface-700 bg-surface-900 py-1 md:hidden">
-              {gamerLinks.map((link) => (
-                <NavLink key={link.href} href={link.href} icon={link.icon} className="flex flex-col items-center gap-0.5 py-1 px-2 text-[10px]">
-                  <span className="text-[9px]">{link.label}</span>
-                </NavLink>
+            <nav className="flex-1 overflow-y-auto py-4">
+              {isAdmin && adminLinks.map((link) => (
+                <NavLink key={link.href} href={link.href} icon={link.icon}>{!sidebarCollapsed && link.label}</NavLink>
+              ))}
+              {isSeller && sellerLinks.map((link) => (
+                <NavLink key={link.href} href={link.href} icon={link.icon}>{!sidebarCollapsed && link.label}</NavLink>
+              ))}
+              {!isAdmin && !isSeller && gamerLinks.map((link) => (
+                <NavLink key={link.href} href={link.href} icon={link.icon}>{!sidebarCollapsed && link.label}</NavLink>
               ))}
             </nav>
-          </>
+
+            <button onClick={() => setSidebarCollapsed(!sidebarCollapsed)} className="absolute -right-3 top-16 flex h-6 w-6 items-center justify-center rounded-full border border-surface-700 bg-surface-800 text-surface-400 hover:text-white">
+              {sidebarCollapsed ? <ChevronRight className="h-3 w-3" /> : <ChevronLeft className="h-3 w-3" />}
+            </button>
+          </aside>
+        )}
+
+        {/* Mobile bottom nav */}
+        {isAuthenticated && (
+          <nav className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-around border-t border-surface-700 bg-surface-900 py-1 md:hidden">
+            {gamerLinks.slice(0, 5).map((link) => (
+              <NavLink key={link.href} href={link.href} icon={link.icon} className="flex flex-col items-center gap-0.5 py-1 px-2 text-[10px]">
+                <span className="text-[9px]">{link.label}</span>
+              </NavLink>
+            ))}
+          </nav>
         )}
 
         {/* Main content */}
@@ -219,8 +210,4 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
       </div>
     </div>
   );
-}
-
-function Separator({ className }: { className?: string }) {
-  return <hr className={`border-surface-700 my-3 ${className ?? ""}`} />;
 }
