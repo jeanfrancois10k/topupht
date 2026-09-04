@@ -6,7 +6,6 @@ import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import {
-  Home,
   Gamepad2,
   ShoppingBag,
   Wallet,
@@ -21,7 +20,8 @@ import {
   FileText,
   ChevronLeft,
   ChevronRight,
-  LogIn,
+  Menu,
+  X,
   Settings,
   UserPlus,
 } from "lucide-react";
@@ -33,6 +33,7 @@ import { getRoleLabel, getRoleColor } from "@/lib/utils";
 export function MainLayout({ children }: { children: React.ReactNode }) {
   const { user, profile, isLoading, isAuthenticated, signOut } = useAuth();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
   if (isLoading) {
@@ -90,92 +91,147 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
           <span className="text-sm font-bold text-white">TOPUP+</span>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
-          <Link href="/games" className="rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800 hover:text-surface-100">Jeux</Link>
-          <Link href="/find-seller" className="rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800 hover:text-surface-100">Trouver un vendeur</Link>
-          <Link href="/support" className="rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800 hover:text-surface-100">Support</Link>
+        <div className="flex items-center gap-2">
           {isAuthenticated ? (
-            <Link href="/dashboard" className="rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800 hover:text-surface-100">Dashboard</Link>
+            <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden">
+              <Menu className="h-5 w-5" />
+            </Button>
           ) : (
             <>
-              <Link href="/auth/login" className="rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800 hover:text-surface-100">Se connecter</Link>
-              <Link href="/auth/register" className="rounded-lg px-3 py-2 text-sm font-medium text-brand-400 transition-colors hover:bg-surface-800">
+              <Link href="/auth/login" className="hidden rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800 hover:text-surface-100 md:block">
+                Se connecter
+              </Link>
+              <Link href="/auth/register" className="hidden rounded-lg px-3 py-2 text-sm font-medium text-brand-400 transition-colors hover:bg-surface-800 md:block">
                 <Button variant="ghost" size="sm" className="h-8 px-3 text-brand-400">
                   <UserPlus className="h-4 w-4 mr-1" />
                   S'inscrire
                 </Button>
               </Link>
+              <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden">
+                <Menu className="h-5 w-5" />
+              </Button>
             </>
           )}
-        </nav>
 
-        {user && (
-          <div className="flex items-center gap-2">
-            <Avatar src={user.avatar_url ?? undefined} alt={user.full_name ?? user.email ?? "User"} />
-            <Button variant="ghost" size="icon" onClick={signOut} className="h-8 w-8">
-              <User className="h-4 w-4" />
-            </Button>
-          </div>
-        )}
+          {user && (
+            <div className="flex items-center gap-2">
+              <Avatar src={user.avatar_url ?? undefined} alt={user.full_name ?? user.email ?? "User"} />
+              <Button variant="ghost" size="icon" onClick={signOut} className="h-8 w-8">
+                <User className="h-4 w-4" />
+              </Button>
+            </div>
+          )}
+        </div>
       </header>
+
+      {/* Mobile menu overlay */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-40 md:hidden">
+          <div className="fixed inset-0 bg-black/50" onClick={() => setMobileMenuOpen(false)} />
+          <div className="fixed left-0 top-16 bottom-0 w-64 bg-surface-900 border-r border-surface-700 overflow-y-auto p-4 space-y-2">
+            <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(false)} className="absolute right-2 top-2 h-8 w-8 text-surface-400">
+              <X className="h-4 w-4" />
+            </Button>
+            {!isAuthenticated ? (
+              <>
+                <Link href="/auth/login" className="block w-full rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800" onClick={() => setMobileMenuOpen(false)}>Se connecter</Link>
+                <Link href="/auth/register" className="block w-full rounded-lg px-3 py-2 text-sm font-medium text-brand-400 transition-colors hover:bg-surface-800" onClick={() => setMobileMenuOpen(false)}>S'inscrire</Link>
+                <Link href="/games" className="block w-full rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800" onClick={() => setMobileMenuOpen(false)}>Jeux</Link>
+                <Link href="/find-seller" className="block w-full rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800" onClick={() => setMobileMenuOpen(false)}>Trouver un vendeur</Link>
+                <Link href="/support" className="block w-full rounded-lg px-3 py-2 text-sm font-medium text-surface-300 transition-colors hover:bg-surface-800" onClick={() => setMobileMenuOpen(false)}>Support</Link>
+              </>
+            ) : isAdmin ? (
+              <>
+                {adminLinks.map((link) => (
+                  <NavLink key={link.href} href={link.href} icon={link.icon} onClick={() => setMobileMenuOpen(false)}>{link.label}</NavLink>
+                ))}
+              </>
+            ) : isSeller ? (
+              <>
+                {sellerLinks.map((link) => (
+                  <NavLink key={link.href} href={link.href} icon={link.icon} onClick={() => setMobileMenuOpen(false)}>{link.label}</NavLink>
+                ))}
+              </>
+            ) : (
+              <>
+                {gamerLinks.map((link) => (
+                  <NavLink key={link.href} href={link.href} icon={link.icon} onClick={() => setMobileMenuOpen(false)}>{link.label}</NavLink>
+                ))}
+              </>
+            )}
+          </div>
+        </div>
+      )}
 
       <div className="flex flex-1 overflow-hidden">
         {isAuthenticated && (
-          <aside className={`${sidebarCollapsed ? "w-16" : "w-60"} relative hidden h-full flex-col border-r border-surface-700 bg-surface-900 transition-all duration-200 lg:flex`}>
-            <div className="flex h-16 items-center justify-center border-b border-surface-700">
-              {!sidebarCollapsed && (
-                <Link href="/" className="flex items-center gap-2">
+          <>
+            {/* Desktop sidebar */}
+            <aside className={`${sidebarCollapsed ? "w-16" : "w-60"} relative hidden h-full flex-col border-r border-surface-700 bg-surface-900 transition-all duration-200 lg:flex`}>
+              <div className="flex h-16 items-center justify-center border-b border-surface-700">
+                {!sidebarCollapsed && (
+                  <Link href="/" className="flex items-center gap-2">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600">
+                      <Gamepad2 className="h-5 w-5 text-white" />
+                    </div>
+                    <span className="text-sm font-bold text-white">TOPUP+</span>
+                  </Link>
+                )}
+                {sidebarCollapsed && (
                   <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600">
                     <Gamepad2 className="h-5 w-5 text-white" />
                   </div>
-                  <span className="text-sm font-bold text-white">TOPUP+</span>
-                </Link>
-              )}
-              {sidebarCollapsed && (
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600">
-                  <Gamepad2 className="h-5 w-5 text-white" />
-                </div>
-              )}
-            </div>
+                )}
+              </div>
 
-            <nav className="flex-1 overflow-y-auto py-4">
-              {isAdmin && (
-                <>
-                  <p className="px-3 text-[10px] font-semibold uppercase tracking-wider text-surface-500">Administration</p>
-                  {adminLinks.map((link) => (
-                    <NavLink key={link.href} href={link.href} icon={link.icon}>{!sidebarCollapsed && link.label}</NavLink>
-                  ))}
-                  <Separator className="my-3" />
-                </>
-              )}
-              {isSeller && (
-                <>
-                  <p className="px-3 text-[10px] font-semibold uppercase tracking-wider text-surface-500">Vendeur</p>
-                  {sellerLinks.map((link) => (
-                    <NavLink key={link.href} href={link.href} icon={link.icon}>{!sidebarCollapsed && link.label}</NavLink>
-                  ))}
-                  <Separator className="my-3" />
-                </>
-              )}
-              {!isAdmin && !isSeller && (
-                <>
-                  <p className="px-3 text-[10px] font-semibold uppercase tracking-wider text-surface-500">Navigation</p>
-                  {gamerLinks.map((link) => (
-                    <NavLink key={link.href} href={link.href} icon={link.icon}>{!sidebarCollapsed && link.label}</NavLink>
-                  ))}
-                  <Separator className="my-3" />
-                </>
-              )}
+              <nav className="flex-1 overflow-y-auto py-4">
+                {isAdmin && (
+                  <>
+                    <p className="px-3 text-[10px] font-semibold uppercase tracking-wider text-surface-500">Administration</p>
+                    {adminLinks.map((link) => (
+                      <NavLink key={link.href} href={link.href} icon={link.icon}>{!sidebarCollapsed && link.label}</NavLink>
+                    ))}
+                    <Separator className="my-3" />
+                  </>
+                )}
+                {isSeller && (
+                  <>
+                    <p className="px-3 text-[10px] font-semibold uppercase tracking-wider text-surface-500">Vendeur</p>
+                    {sellerLinks.map((link) => (
+                      <NavLink key={link.href} href={link.href} icon={link.icon}>{!sidebarCollapsed && link.label}</NavLink>
+                    ))}
+                    <Separator className="my-3" />
+                  </>
+                )}
+                {!isAdmin && !isSeller && (
+                  <>
+                    <p className="px-3 text-[10px] font-semibold uppercase tracking-wider text-surface-500">Navigation</p>
+                    {gamerLinks.map((link) => (
+                      <NavLink key={link.href} href={link.href} icon={link.icon}>{!sidebarCollapsed && link.label}</NavLink>
+                    ))}
+                    <Separator className="my-3" />
+                  </>
+                )}
+              </nav>
+
+              <button onClick={() => setSidebarCollapsed(!sidebarCollapsed)} className="absolute -right-3 top-16 flex h-6 w-6 items-center justify-center rounded-full border border-surface-700 bg-surface-800 text-surface-400 hover:text-white">
+                {sidebarCollapsed ? <ChevronRight className="h-3 w-3" /> : <ChevronLeft className="h-3 w-3" />}
+              </button>
+            </aside>
+
+            {/* Mobile bottom nav */}
+            <nav className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-around border-t border-surface-700 bg-surface-900 py-1 md:hidden">
+              {gamerLinks.map((link) => (
+                <NavLink key={link.href} href={link.href} icon={link.icon} className="flex flex-col items-center gap-0.5 py-1 px-2 text-[10px]">
+                  <span className="text-[9px]">{link.label}</span>
+                </NavLink>
+              ))}
             </nav>
-
-            <button onClick={() => setSidebarCollapsed(!sidebarCollapsed)} className="absolute -right-3 top-16 flex h-6 w-6 items-center justify-center rounded-full border border-surface-700 bg-surface-800 text-surface-400 hover:text-white">
-              {sidebarCollapsed ? <ChevronRight className="h-3 w-3" /> : <ChevronLeft className="h-3 w-3" />}
-            </button>
-          </aside>
+          </>
         )}
 
         {/* Main content */}
-        <main className={`flex-1 overflow-y-auto bg-surface-950 ${isAuthenticated ? "p-4 lg:p-6" : ""}`}>
+        <main className={`flex-1 overflow-y-auto bg-surface-950 ${isAuthenticated ? "pb-20 p-4 lg:p-6" : ""}`}>
           {children}
         </main>
       </div>
