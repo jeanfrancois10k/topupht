@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: "%s | Game Top-Up",
   },
   description: "La plateforme #1 de recharge de jeux à Africa. Achète tes diamants et crédits rapidement.",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_PLATFORM_URL ?? "http://localhost:3000"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_PLATFORM_URL || "http://localhost:3000"),
   openGraph: {
     title: "Game Top-Up",
     description: "La plateforme #1 de recharge de jeux à Africa.",
