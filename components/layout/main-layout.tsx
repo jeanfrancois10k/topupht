@@ -22,7 +22,8 @@ import {
   ChevronRight,
   Menu,
   X,
-  } from "lucide-react";
+  Settings,
+} from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
