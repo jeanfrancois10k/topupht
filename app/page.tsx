@@ -13,7 +13,7 @@ import { Gamepad2, Store, Gift, Users } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "TOPUP+",
-  description: "La plateforme #1 de recharge de jeux à Africa. Achète tes diamants et crédits rapidement. Pas de moyen de paiement ? Trouve un vendeur.",
+  description: "TOPUP+ est la plateforme de référence pour vos recharges en ligne. Achetez rapidement vos diamants et crédits pour Free Fire, Mobile Legends, PUBG, Roblox et bien d'autres. Pas de moyen de paiement ? Trouvez un vendeur de confiance.",
   keywords: ["recharge jeux", "diamants free fire", "top-up jeux", "mobile legends", "pubg", "roblox"],
 };
 

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     default: "TOPUP+",
     template: "%s | TOPUP+",
   },
-  description: "La plateforme #1 de recharge de jeux à Africa. Achète tes diamants et crédits rapidement.",
+  description: "TOPUP+ est la plateforme de référence pour vos recharges en ligne. Achetez rapidement vos diamants et crédits pour Free Fire, Mobile Legends, PUBG, Roblox et bien d'autres.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_PLATFORM_URL || "http://localhost:3000"),
   openGraph: {
     title: "TOPUP+",
