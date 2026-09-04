@@ -513,9 +513,9 @@ CREATE VIEW seller_dashboard_stats AS
 SELECT
   sp.user_id,
   COUNT(DISTINCT o.id) AS total_orders,
-  COALESCE(SUM(o.amount)::NUMERIC, 0) AS total_sales,
-  COALESCE(SUM(c.amount)::NUMERIC, 0) AS total_commissions,
-  COALESCE(SUM(wt_withdraw.amount)::NUMERIC, 0) AS total_withdrawals,
+  COALESCE(SUM(o.amount::NUMERIC), 0) AS total_sales,
+  COALESCE(SUM(c.amount::NUMERIC), 0) AS total_commissions,
+  COALESCE(SUM(wt_withdraw.amount::NUMERIC), 0) AS total_withdrawals,
   wal.balance AS current_balance
 FROM seller_profiles sp
 LEFT JOIN orders o ON sp.user_id = o.user_id AND o.status = 'SUCCESS'
