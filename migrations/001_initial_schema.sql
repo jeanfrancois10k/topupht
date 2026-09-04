@@ -495,7 +495,7 @@ CREATE INDEX idx_audit_created ON audit_logs(created_at);
 -- ============================================
 
 CREATE TABLE system_settings (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id TEXT PRIMARY KEY,
   key TEXT NOT NULL UNIQUE,
   value JSONB NOT NULL,
   label TEXT NOT NULL,
