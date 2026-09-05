@@ -50,14 +50,14 @@ export default function AdminSellersPage() {
   return (
     <div className="space-y-8 p-4">
       <div>
-        <h1 className="text-3xl font-bold text-white">Gestion des Vendeurs</h1>
+        <h1 className="text-3xl font-bold text-surface-50">Gestion des Vendeurs</h1>
         <p className="mt-1 text-surface-400">{profiles.length} vendeur(s) approuvé(s) — {requests.length} demande(s) en attente</p>
       </div>
 
       <section>
         <div className="mb-4 flex items-center gap-2">
           <Store className="h-5 w-5 text-purple-400" />
-          <h2 className="text-2xl font-bold text-white">Vendeurs approuvés</h2>
+          <h2 className="text-2xl font-bold text-surface-50">Vendeurs approuvés</h2>
           <Badge className="bg-purple-500/20 text-purple-400">{profiles.length}</Badge>
         </div>
 
@@ -79,7 +79,7 @@ export default function AdminSellersPage() {
                         <Store className="h-5 w-5 text-surface-400" />
                       </div>
                       <div>
-                        <p className="text-sm font-semibold text-white">{profile.business_name ?? profile.user_id}</p>
+                        <p className="text-sm font-semibold text-surface-50">{profile.business_name ?? profile.user_id}</p>
                         <p className="text-xs text-surface-400">{profile.user_id}</p>
                       </div>
                     </div>
@@ -98,7 +98,7 @@ export default function AdminSellersPage() {
       <section>
         <div className="mb-4 flex items-center gap-2">
           <Users className="h-5 w-5 text-yellow-400" />
-          <h2 className="text-2xl font-bold text-white">Demandes en attente</h2>
+          <h2 className="text-2xl font-bold text-surface-50">Demandes en attente</h2>
           <Badge className="bg-yellow-500/20 text-yellow-400">{requests.length}</Badge>
         </div>
 
@@ -120,7 +120,7 @@ export default function AdminSellersPage() {
                         <Users className="h-5 w-5 text-surface-400" />
                       </div>
                       <div>
-                        <p className="text-sm font-semibold text-white">{request.full_name}</p>
+                        <p className="text-sm font-semibold text-surface-50">{request.full_name}</p>
                         <p className="text-xs text-surface-400">{request.phone}</p>
                       </div>
                     </div>

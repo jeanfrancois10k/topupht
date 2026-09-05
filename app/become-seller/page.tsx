@@ -55,7 +55,7 @@ export default function BecomeSellerPage() {
             <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-yellow-500/20">
               <Clock className="h-8 w-8 text-yellow-400" />
             </div>
-            <h2 className="mt-4 text-2xl font-bold text-white">Demande soumise !</h2>
+            <h2 className="mt-4 text-2xl font-bold text-surface-50">Demande soumise !</h2>
             <p className="mt-2 text-surface-400">Votre demande a été envoyée à l'administration. Vous recevrez une notification une fois approuvé.</p>
             <Button variant="outline" className="mt-6">
               <Link href="/dashboard">Retour au tableau de bord</Link>
@@ -69,7 +69,7 @@ export default function BecomeSellerPage() {
   return (
     <div className="space-y-8 p-4">
       <div className="text-center">
-        <h1 className="text-3xl font-bold text-white">Devenir vendeur</h1>
+        <h1 className="text-3xl font-bold text-surface-50">Devenir vendeur</h1>
         <p className="mt-2 text-surface-400">Rejoignez notre réseau de vendeurs et gagnez sur chaque recharge</p>
       </div>
 
@@ -84,7 +84,7 @@ export default function BecomeSellerPage() {
             <Card key={item.title} className="border-surface-700 bg-surface-800 text-center card-hover">
               <CardContent className="p-6">
                 <Icon className="mx-auto h-10 w-10 text-brand-400 mb-4" />
-                <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+                <h3 className="text-lg font-semibold text-surface-50">{item.title}</h3>
                 <p className="mt-2 text-sm text-surface-400">{item.desc}</p>
               </CardContent>
             </Card>

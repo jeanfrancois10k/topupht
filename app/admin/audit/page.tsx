@@ -43,7 +43,7 @@ export default function AdminAuditPage() {
   return (
     <div className="space-y-8 p-4">
       <div>
-        <h1 className="text-3xl font-bold text-white">Logs d'audit</h1>
+        <h1 className="text-3xl font-bold text-surface-50">Logs d'audit</h1>
         <p className="mt-1 text-surface-400">{logs.length} entrée(s)</p>
       </div>
 
@@ -61,7 +61,7 @@ export default function AdminAuditPage() {
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-semibold text-white">{log.action}</p>
+                    <p className="text-sm font-semibold text-surface-50">{log.action}</p>
                     <p className="text-xs text-surface-400">{log.entity_type} - {log.entity_id} - {log.user_id}</p>
                   </div>
                   <div className="text-right">

@@ -48,7 +48,7 @@ export default function PromotionsPage() {
   return (
     <div className="space-y-8 p-4">
       <div>
-        <h1 className="text-3xl font-bold text-white">Promotions et Coupons</h1>
+        <h1 className="text-3xl font-bold text-surface-50">Promotions et Coupons</h1>
         <p className="mt-1 text-surface-400">Découvrez nos offres actives</p>
       </div>
 
@@ -73,7 +73,7 @@ export default function PromotionsPage() {
                 <CardContent>
                   <div className="flex items-center gap-2">
                     <Badge variant="warning">{promo.type}</Badge>
-                    <span className="text-lg font-bold text-white">{formatCurrency(promo.value)}</span>
+                    <span className="text-lg font-bold text-surface-50">{formatCurrency(promo.value)}</span>
                   </div>
                   <div className="mt-2 flex items-center gap-2 text-xs text-surface-400">
                     <span>Du {new Date(promo.start_date).toLocaleDateString("fr-HT")}</span>
@@ -98,7 +98,7 @@ export default function PromotionsPage() {
                   {coupons.map((coupon) => (
                     <div key={coupon.id} className="flex items-center justify-between rounded-lg bg-surface-700 p-4">
                       <div>
-                        <p className="text-sm font-semibold text-white">{coupon.code}</p>
+                        <p className="text-sm font-semibold text-surface-50">{coupon.code}</p>
                         <p className="text-xs text-surface-400">Réf : {coupon.promotion_id}</p>
                       </div>
                       <Badge variant="success" className={getStatusColor("ACTIVE")}>Disponible</Badge>

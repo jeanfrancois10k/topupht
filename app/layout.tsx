@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { MainLayout } from "@/components/layout/main-layout";
 import { AuthProvider } from "@/components/features/auth/auth-provider";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: {
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen bg-surface-950 text-surface-50 antialiased">
         <AuthProvider>
           <MainLayout>{children}</MainLayout>
+          <Toaster position="top-center" richColors />
         </AuthProvider>
       </body>
     </html>

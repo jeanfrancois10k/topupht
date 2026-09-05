@@ -42,7 +42,7 @@ export default function AdminOrdersPage() {
   return (
     <div className="space-y-8 p-4">
       <div>
-        <h1 className="text-3xl font-bold text-white">Toutes les commandes</h1>
+        <h1 className="text-3xl font-bold text-surface-50">Toutes les commandes</h1>
         <p className="mt-1 text-surface-400">{orders.length} commande(s)</p>
       </div>
 
@@ -62,10 +62,10 @@ export default function AdminOrdersPage() {
               <tbody>
                 {orders.map((order) => (
                   <tr key={order.id} className="border-b border-surface-700/50 hover:bg-surface-700/30">
-                    <td className="px-4 py-3 text-white font-medium">{order.order_number}</td>
+                    <td className="px-4 py-3 text-surface-50 font-medium">{order.order_number}</td>
                     <td className="px-4 py-3 text-surface-300">{order.user_id}</td>
                     <td className="px-4 py-3 text-surface-300">{order.product_id}</td>
-                    <td className="px-4 py-3 text-white">{formatCurrency(order.amount, order.currency as any as any)}</td>
+                    <td className="px-4 py-3 text-surface-50">{formatCurrency(order.amount, order.currency as any as any)}</td>
                     <td className="px-4 py-3">
                       <Badge className={order.status === "SUCCESS" ? "bg-green-500/20 text-green-400" : order.status === "PROCESSING" ? "bg-blue-500/20 text-blue-400" : "bg-yellow-500/20 text-yellow-400"}>
                         {order.status}

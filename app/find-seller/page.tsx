@@ -34,7 +34,7 @@ export default function FindSellerPage() {
   return (
     <div className="space-y-8 p-4">
       <div className="text-center">
-        <h1 className="text-3xl font-bold text-white">Trouver un vendeur</h1>
+        <h1 className="text-3xl font-bold text-surface-50">Trouver un vendeur</h1>
         <p className="mt-2 text-surface-400">Trouvez un vendeur de confiance près de chez vous</p>
       </div>
 
@@ -60,7 +60,7 @@ export default function FindSellerPage() {
                 <div className="flex items-center gap-3">
                   <Avatar alt={seller.business_name ?? seller.user_id} fallback={seller.business_name ?? seller.user_id} />
                   <div>
-                    <h3 className="text-sm font-semibold text-white">{seller.business_name ?? "Vendeur"}</h3>
+                    <h3 className="text-sm font-semibold text-surface-50">{seller.business_name ?? "Vendeur"}</h3>
                     <p className="text-xs text-surface-400">{seller.city ?? "Zone non renseignée"}</p>
                   </div>
                 </div>

@@ -45,7 +45,7 @@ export function Modal({ open, onOpenChange, children, size = "md", className, ..
 
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm animate-fade-in" onClick={() => onOpenChange(false)} />
+      <div className="fixed inset-0 bg-surface-950 backdrop-blur-sm animate-fade-in" onClick={() => onOpenChange(false)} />
       <div className={cn("relative w-full max-w-lg rounded-xl border border-surface-700 bg-surface-800 shadow-2xl animate-scale-in", size === "sm" && "max-w-md", size === "lg" && "max-w-2xl", size === "xl" && "max-w-4xl", className)} {...props}>
         {children}
       </div>

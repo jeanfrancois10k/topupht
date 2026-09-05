@@ -37,7 +37,7 @@ export function generateIdempotencyKey(): string {
 
 export function formatHTG(amount: string | number): string {
   const num = typeof amount === "string" ? parseFloat(amount) : amount;
-  return `${num.toLocaleString("ht-HT")} GNF`;
+  return `${num.toLocaleString("ht-HT")} HTG`;
 }
 
 export function parseHTG(amount: string): number {

@@ -66,7 +66,7 @@ export default function DashboardPage() {
     <ProtectedRoute>
       <div className="space-y-8">
         <div>
-          <h1 className="text-3xl font-bold text-white">Tableau de bord</h1>
+          <h1 className="text-3xl font-bold text-surface-50">Tableau de bord</h1>
           <p className="mt-1 text-surface-400">Bienvenue, {profile?.full_name ?? profile?.email ?? "Gamer"} !</p>
         </div>
 
@@ -76,7 +76,7 @@ export default function DashboardPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-surface-400">Solde</p>
-                  <p className="mt-1 text-2xl font-bold text-white">{wallet ? formatCurrency(wallet.balance, wallet.currency as any) : formatCurrency("0")}</p>
+                  <p className="mt-1 text-2xl font-bold text-surface-50">{wallet ? formatCurrency(wallet.balance, wallet.currency as any) : formatCurrency("0")}</p>
                 </div>
                 <WalletIcon className="h-8 w-8 text-brand-400" />
               </div>
@@ -87,7 +87,7 @@ export default function DashboardPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-surface-400">Commandes</p>
-                  <p className="mt-1 text-2xl font-bold text-white">{orders.length}</p>
+                  <p className="mt-1 text-2xl font-bold text-surface-50">{orders.length}</p>
                 </div>
                 <ShoppingBag className="h-8 w-8 text-htg-400" />
               </div>
@@ -98,7 +98,7 @@ export default function DashboardPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-surface-400">Jeux disponibles</p>
-                  <p className="mt-1 text-2xl font-bold text-white">{games.length}</p>
+                  <p className="mt-1 text-2xl font-bold text-surface-50">{games.length}</p>
                 </div>
                 <Gamepad2 className="h-8 w-8 text-indigo-400" />
               </div>
@@ -109,7 +109,7 @@ export default function DashboardPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-surface-400">Promotions</p>
-                  <p className="mt-1 text-2xl font-bold text-white">{promotions.length}</p>
+                  <p className="mt-1 text-2xl font-bold text-surface-50">{promotions.length}</p>
                 </div>
                 <Gift className="h-8 w-8 text-yellow-400" />
               </div>
@@ -131,7 +131,7 @@ export default function DashboardPage() {
                       <Gamepad2 className="h-5 w-5 text-brand-400" />
                     </div>
                     <div className="flex-1">
-                      <p className="text-sm font-medium text-white">{game.name}</p>
+                      <p className="text-sm font-medium text-surface-50">{game.name}</p>
                     </div>
                     <Badge variant="success">Actif</Badge>
                   </Link>
@@ -159,12 +159,12 @@ export default function DashboardPage() {
                   {orders.map((order) => (
                     <div key={order.id} className="flex items-center justify-between rounded-lg bg-surface-800 p-3">
                       <div>
-                        <p className="text-sm font-medium text-white">{order.order_number}</p>
+                        <p className="text-sm font-medium text-surface-50">{order.order_number}</p>
                         <p className="text-xs text-surface-400">{order.status}</p>
                       </div>
                       <div className="text-right">
                         <Badge className={order.status === "SUCCESS" ? "bg-green-500/20 text-green-400" : order.status === "PROCESSING" ? "bg-blue-500/20 text-blue-400" : "bg-yellow-500/20 text-yellow-400"}>{order.status}</Badge>
-                        <p className="mt-1 text-sm font-medium text-white">{formatCurrency(order.amount, order.currency as any)}</p>
+                        <p className="mt-1 text-sm font-medium text-surface-50">{formatCurrency(order.amount, order.currency as any)}</p>
                       </div>
                     </div>
                   ))}
@@ -187,7 +187,7 @@ export default function DashboardPage() {
                 {promotions.map((promo) => (
                   <div key={promo.id} className="rounded-lg bg-surface-800 p-4 border border-surface-700">
                     <div className="flex items-center justify-between">
-                      <h4 className="text-sm font-semibold text-white">{promo.name}</h4>
+                      <h4 className="text-sm font-semibold text-surface-50">{promo.name}</h4>
                       {promo.code && <Badge variant="warning">{promo.code}</Badge>}
                     </div>
                     <p className="mt-1 text-xs text-surface-400">{promo.type} - {promo.value}%</p>

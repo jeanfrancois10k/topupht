@@ -50,7 +50,7 @@ export default function GamesPage() {
   return (
     <div className="space-y-8 p-4">
       <div>
-        <h1 className="text-3xl font-bold text-white">Tous les jeux</h1>
+        <h1 className="text-3xl font-bold text-surface-50">Tous les jeux</h1>
         <p className="mt-1 text-surface-400">Choisissez votre jeu pour commencer</p>
       </div>
 
@@ -77,7 +77,7 @@ export default function GamesPage() {
                   )}
                 </div>
                 <CardContent className="p-4">
-                  <CardTitle className="text-white">{game.name}</CardTitle>
+                  <CardTitle className="text-surface-50">{game.name}</CardTitle>
                   {game.description && <p className="mt-1 line-clamp-2 text-xs text-surface-400">{game.description}</p>}
                   <Badge variant="success" className="mt-2">Actif</Badge>
                 </CardContent>

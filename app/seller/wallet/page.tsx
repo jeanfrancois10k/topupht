@@ -47,7 +47,7 @@ export default function SellerWalletPage() {
   return (
     <div className="space-y-8 p-4">
       <div>
-        <h1 className="text-3xl font-bold text-white">Mon portefeuille</h1>
+        <h1 className="text-3xl font-bold text-surface-50">Mon portefeuille</h1>
         <p className="mt-1 text-surface-400">Gérez votre solde professionnel</p>
       </div>
 
@@ -60,7 +60,7 @@ export default function SellerWalletPage() {
               </div>
               <div>
                 <p className="text-sm text-surface-400">Solde disponible</p>
-                <p className="mt-1 text-3xl font-bold text-white">{wallet ? formatCurrency(wallet.balance, wallet.currency as any as any as any) : "0 HTG"}</p>
+                <p className="mt-1 text-3xl font-bold text-surface-50">{wallet ? formatCurrency(wallet.balance, wallet.currency as any as any as any) : "0 HTG"}</p>
               </div>
             </div>
           </CardContent>
@@ -68,7 +68,7 @@ export default function SellerWalletPage() {
 
         <Card className="border-surface-700 bg-surface-800">
           <CardContent className="p-6">
-            <h3 className="text-sm font-semibold text-white mb-4">Transactions récentes</h3>
+            <h3 className="text-sm font-semibold text-surface-50 mb-4">Transactions récentes</h3>
             <div className="space-y-3">
               {transactions.slice(0, 5).map((tx) => (
                 <div key={tx.id} className="flex items-center justify-between rounded-lg bg-surface-700 p-3">

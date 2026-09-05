@@ -49,7 +49,7 @@ export default function SellerProductsPage() {
     <div className="space-y-8 p-4">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-white">Mes produits</h1>
+          <h1 className="text-3xl font-bold text-surface-50">Mes produits</h1>
           <p className="mt-1 text-surface-400">{products.length} produit(s) disponible(s)</p>
         </div>
         <Button>
@@ -63,7 +63,7 @@ export default function SellerProductsPage() {
             <CardContent className="p-5">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-lg font-semibold text-white">{product.name}</h3>
+                  <h3 className="text-lg font-semibold text-surface-50">{product.name}</h3>
                   <p className="text-xs text-surface-400">SKU: {product.sku}</p>
                 </div>
                 <Badge variant="success">Actif</Badge>

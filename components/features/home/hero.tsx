@@ -13,7 +13,7 @@ export function Hero() {
         <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
           <div>
             <Badge variant="warning" className="mb-4 inline-block">🔥 Plateforme #1</Badge>
-            <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl leading-tight">
+            <h1 className="text-4xl font-extrabold tracking-tight text-surface-50 sm:text-5xl lg:text-6xl leading-tight">
               TOPUP+ — La plateforme de référence pour vos recharges en ligne
             </h1>
             <p className="mt-4 max-w-lg text-lg text-surface-300">

@@ -13,7 +13,7 @@ export function HowItWorks() {
   return (
     <section className="border-t border-surface-800 bg-surface-950 py-16">
       <div className="container-custom">
-        <h2 className="text-3xl font-bold text-white text-center mb-12">Comment ça marche</h2>
+        <h2 className="text-3xl font-bold text-surface-50 text-center mb-12">Comment ça marche</h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, index) => {
             const Icon = step.icon;
@@ -24,7 +24,7 @@ export function HowItWorks() {
                     <Icon className="h-7 w-7" />
                   </div>
                   <span className="mb-2 inline-block rounded-full bg-surface-700 px-3 py-0.5 text-xs font-bold text-brand-400">Étape {index + 1}</span>
-                  <CardTitle className="mt-3 text-white">{step.title}</CardTitle>
+                  <CardTitle className="mt-3 text-surface-50">{step.title}</CardTitle>
                   <p className="mt-2 text-sm text-surface-400">{step.description}</p>
                 </CardContent>
               </Card>

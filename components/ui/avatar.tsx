@@ -19,7 +19,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(({ src, alt = "", 
       {src ? (
         <img src={src} alt={alt} className="h-full w-full object-cover" />
       ) : (
-        <div className={cn("flex h-full w-full items-center justify-center rounded-full text-white font-semibold", colors[colorIndex])}>
+        <div className={cn("flex h-full w-full items-center justify-center rounded-full text-surface-50 font-semibold", colors[colorIndex])}>
           {initials}
         </div>
       )}

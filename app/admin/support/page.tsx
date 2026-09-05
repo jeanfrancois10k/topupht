@@ -43,7 +43,7 @@ export default function AdminSupportPage() {
   return (
     <div className="space-y-8 p-4">
       <div>
-        <h1 className="text-3xl font-bold text-white">Support</h1>
+        <h1 className="text-3xl font-bold text-surface-50">Support</h1>
         <p className="mt-1 text-surface-400">{tickets.length} ticket(s)</p>
       </div>
 
@@ -61,7 +61,7 @@ export default function AdminSupportPage() {
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-semibold text-white">{ticket.subject}</p>
+                    <p className="text-sm font-semibold text-surface-50">{ticket.subject}</p>
                     <p className="text-xs text-surface-400">{ticket.user_id} - {ticket.category}</p>
                   </div>
                   <div className="text-right">

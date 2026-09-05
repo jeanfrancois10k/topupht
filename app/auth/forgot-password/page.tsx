@@ -26,9 +26,9 @@ export default function ForgotPasswordPage() {
       <div className="w-full max-w-md">
         <div className="mb-8 flex flex-col items-center">
           <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-600 shadow-lg shadow-brand-600/30">
-            <Gamepad2 className="h-8 w-8 text-white" />
+            <Gamepad2 className="h-8 w-8 text-surface-50" />
           </div>
-          <h1 className="mt-4 text-2xl font-bold text-white">TOPUP+</h1>
+          <h1 className="mt-4 text-2xl font-bold text-surface-50">TOPUP+</h1>
           <p className="mt-1 text-sm text-surface-400">Réinitialiser le mot de passe</p>
         </div>
 

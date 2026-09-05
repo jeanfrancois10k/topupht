@@ -20,7 +20,7 @@ export default function AdminSettingsPage() {
   return (
     <div className="space-y-8 p-4">
       <div>
-        <h1 className="text-3xl font-bold text-white">Paramètres</h1>
+        <h1 className="text-3xl font-bold text-surface-50">Paramètres</h1>
         <p className="mt-1 text-surface-400">Configurez les paramètres de la plateforme</p>
       </div>
 

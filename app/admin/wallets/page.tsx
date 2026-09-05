@@ -69,7 +69,7 @@ export default function AdminWalletsPage() {
   return (
     <div className="space-y-8 p-4">
       <div>
-        <h1 className="text-3xl font-bold text-white">Gestion des Portefeuilles</h1>
+        <h1 className="text-3xl font-bold text-surface-50">Gestion des Portefeuilles</h1>
         <p className="mt-1 text-surface-400">{wallets.length} portefeuille(s) — Solde total : {formatCurrency(totalBalance)}</p>
       </div>
 
@@ -148,12 +148,12 @@ export default function AdminWalletsPage() {
                         <Wallet className="h-5 w-5 text-brand-400" />
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-white">{wallet.user_id}</p>
+                        <p className="text-sm font-medium text-surface-50">{wallet.user_id}</p>
                         <p className="text-xs text-surface-400">{wallet.id}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-4">
-                      <span className="text-lg font-bold text-white">{formatCurrency(wallet.balance, wallet.currency as any)}</span>
+                      <span className="text-lg font-bold text-surface-50">{formatCurrency(wallet.balance, wallet.currency as any)}</span>
                       <Badge className={getStatusColor(wallet.status)}>{wallet.status}</Badge>
                     </div>
                   </CardContent>
@@ -189,10 +189,10 @@ export default function AdminWalletsPage() {
                 <tbody>
                   {transactions.map((tx) => (
                     <tr key={tx.id} className="border-b border-surface-700/50 hover:bg-surface-700/30">
-                      <td className="px-4 py-3 text-white font-medium">{tx.id.slice(0, 8)}</td>
+                      <td className="px-4 py-3 text-surface-50 font-medium">{tx.id.slice(0, 8)}</td>
                       <td className="px-4 py-3 text-surface-300">{tx.user_id}</td>
                       <td className="px-4 py-3 text-surface-300">{tx.type}</td>
-                      <td className="px-4 py-3 text-white">{formatCurrency(tx.amount, tx.currency as any)}</td>
+                      <td className="px-4 py-3 text-surface-50">{formatCurrency(tx.amount, tx.currency as any)}</td>
                       <td className="px-4 py-3">
                         <Badge className={getStatusColor(tx.status)}>{tx.status}</Badge>
                       </td>

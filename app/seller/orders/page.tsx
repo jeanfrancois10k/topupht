@@ -45,7 +45,7 @@ export default function SellerOrdersPage() {
   return (
     <div className="space-y-8 p-4">
       <div>
-        <h1 className="text-3xl font-bold text-white">Mes commandes</h1>
+        <h1 className="text-3xl font-bold text-surface-50">Mes commandes</h1>
         <p className="mt-1 text-surface-400">Historique des commandes du vendeur</p>
       </div>
 
@@ -63,13 +63,13 @@ export default function SellerOrdersPage() {
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-semibold text-white">{order.order_number}</p>
+                    <p className="text-sm font-semibold text-surface-50">{order.order_number}</p>
                     <p className="text-xs text-surface-400">{order.product_id}</p>
                     <p className="text-xs text-surface-500">{order.created_at}</p>
                   </div>
                   <div className="text-right">
                     <Badge className={getStatusColor(order.status)}>{order.status}</Badge>
-                    <p className="mt-1 text-sm font-bold text-white">{formatCurrency(order.amount, order.currency as any as any)}</p>
+                    <p className="mt-1 text-sm font-bold text-surface-50">{formatCurrency(order.amount, order.currency as any as any)}</p>
                   </div>
                 </div>
               </CardContent>

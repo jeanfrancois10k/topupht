@@ -22,7 +22,7 @@ export async function PopularGames() {
     <section className="border-t border-surface-800 bg-surface-950 py-16">
       <div className="container-custom">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-3xl font-bold text-white">Jeux populaires</h2>
+          <h2 className="text-3xl font-bold text-surface-50">Jeux populaires</h2>
           <Link href="/games" className="hidden items-center gap-1 text-sm font-medium text-brand-400 hover:underline md:flex">
             Voir tous <ArrowRight className="h-4 w-4" />
           </Link>
@@ -45,7 +45,7 @@ export async function PopularGames() {
                     )}
                   </div>
                   <CardContent className="p-4">
-                    <h3 className="text-sm font-semibold text-white group-hover:text-brand-400 transition-colors">{game.name}</h3>
+                    <h3 className="text-sm font-semibold text-surface-50 group-hover:text-brand-400 transition-colors">{game.name}</h3>
                     <Badge variant="success" className="mt-2">Actif</Badge>
                   </CardContent>
                 </Card>

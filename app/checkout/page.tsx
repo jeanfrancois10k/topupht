@@ -51,7 +51,7 @@ export default function CheckoutPage() {
         <Card className="w-full max-w-md border-surface-700 bg-surface-800">
           <CardContent className="p-8 text-center">
             <ShoppingBag className="mx-auto h-12 w-12 text-surface-600" />
-            <h2 className="mt-4 text-xl font-bold text-white">Connexion requise</h2>
+            <h2 className="mt-4 text-xl font-bold text-surface-50">Connexion requise</h2>
             <p className="mt-2 text-surface-400">Veuillez vous connecter pour effectuer un achat.</p>
           </CardContent>
         </Card>
@@ -108,7 +108,7 @@ export default function CheckoutPage() {
   return (
     <div className="space-y-8 p-4">
       <div>
-        <h1 className="text-3xl font-bold text-white">Commander</h1>
+        <h1 className="text-3xl font-bold text-surface-50">Commander</h1>
         <p className="mt-1 text-surface-400">Confirmez votre achat</p>
       </div>
 
@@ -134,7 +134,7 @@ export default function CheckoutPage() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between rounded-lg bg-surface-700 p-3">
                   <div>
-                    <p className="text-sm font-medium text-white">{product.name}</p>
+                    <p className="text-sm font-medium text-surface-50">{product.name}</p>
                     <p className="text-xs text-surface-400">SKU: {product.sku}</p>
                   </div>
                   <span className="text-lg font-bold text-brand-400">{formatCurrency(product.price_gamer, product.currency)}</span>
@@ -153,14 +153,14 @@ export default function CheckoutPage() {
                   <div className="rounded-lg bg-surface-700 p-3 space-y-2">
                     <div className="flex justify-between text-sm">
                       <span className="text-surface-400">Prix produit</span>
-                      <span className="text-white">{formatCurrency(product.price_gamer, product.currency)}</span>
+                      <span className="text-surface-50">{formatCurrency(product.price_gamer, product.currency)}</span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span className="text-surface-400">Frais de paiement</span>
                       <span className="text-yellow-400">{(parseFloat(product.price_gamer) * 0.025).toFixed(0)} HTG</span>
                     </div>
                     <div className="border-t border-surface-600 pt-2 flex justify-between text-sm font-bold">
-                      <span className="text-white">Total</span>
+                      <span className="text-surface-50">Total</span>
                       <span className="text-brand-400">{formatCurrency((parseFloat(product.price_gamer) * 1.025).toString(), product.currency)}</span>
                     </div>
                   </div>
@@ -185,23 +185,23 @@ export default function CheckoutPage() {
             </CardHeader>
             <CardContent className="space-y-3">
               <div className="flex items-center gap-3 rounded-lg bg-surface-700 p-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-white text-xs font-bold">MC</div>
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-surface-50 text-xs font-bold">MC</div>
                 <div>
-                  <p className="text-sm font-medium text-white">MonCash</p>
+                  <p className="text-sm font-medium text-surface-50">MonCash</p>
                   <p className="text-xs text-surface-400">Paiement mobile</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 rounded-lg bg-surface-700 p-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white text-xs font-bold">NC</div>
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-surface-50 text-xs font-bold">NC</div>
                 <div>
-                  <p className="text-sm font-medium text-white">NatCash</p>
+                  <p className="text-sm font-medium text-surface-50">NatCash</p>
                   <p className="text-xs text-surface-400">Paiement mobile</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 rounded-lg bg-surface-700 p-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-600 text-white text-xs font-bold">CC</div>
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-green-600 text-surface-50 text-xs font-bold">CC</div>
                 <div>
-                  <p className="text-sm font-medium text-white">Carte bancaire</p>
+                  <p className="text-sm font-medium text-surface-50">Carte bancaire</p>
                   <p className="text-xs text-surface-400">Visa / Mastercard</p>
                 </div>
               </div>
@@ -210,7 +210,7 @@ export default function CheckoutPage() {
 
           <Card className="border-surface-700 bg-surface-800">
             <CardContent className="p-4">
-              <h3 className="text-sm font-semibold text-white mb-2">Comment ça marche ?</h3>
+              <h3 className="text-sm font-semibold text-surface-50 mb-2">Comment ça marche ?</h3>
               <ol className="space-y-2 text-xs text-surface-400">
                 <li className="flex gap-2"><span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-brand-600/20 text-brand-400">1</span>Commandez et choisissez votre mode de paiement</li>
                 <li className="flex gap-2"><span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-brand-600/20 text-brand-400">2</span>Effectuez le paiement</li>

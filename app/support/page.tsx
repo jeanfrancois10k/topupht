@@ -51,7 +51,7 @@ export default function SupportPage() {
         <Card className="w-full max-w-md border-surface-700 bg-surface-800 text-center">
           <CardContent className="p-8">
             <HelpCircle className="mx-auto h-12 w-12 text-htg-400" />
-            <h2 className="mt-4 text-xl font-bold text-white">Ticket créé !</h2>
+            <h2 className="mt-4 text-xl font-bold text-surface-50">Ticket créé !</h2>
             <p className="mt-2 text-surface-400">Notre équipe vous répondra dans les plus brefs délais.</p>
           </CardContent>
         </Card>
@@ -62,7 +62,7 @@ export default function SupportPage() {
   return (
     <div className="space-y-8 p-4">
       <div>
-        <h1 className="text-3xl font-bold text-white">Support</h1>
+        <h1 className="text-3xl font-bold text-surface-50">Support</h1>
         <p className="mt-1 text-surface-400">Nous contacter pour toute question ou problème</p>
       </div>
 

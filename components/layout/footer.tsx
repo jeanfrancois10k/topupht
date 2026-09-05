@@ -10,15 +10,12 @@ export function Footer() {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600">
-                <Gamepad2 className="h-5 w-5 text-white" />
-              </div>
-              <span className="text-lg font-bold text-white">TOPUP+</span>
+              <img src="/logo.png" alt="TOPUP+" className="h-8 object-contain" />
             </div>
-            <p className="mt-3 text-sm text-surface-400">La plateforme #1 de recharge de jeux à Africa.</p>
+            <p className="mt-3 text-sm text-surface-400">La plateforme #1 de recharge de jeux en Haïti.</p>
           </div>
           <div>
-            <h4 className="text-sm font-semibold text-white">Navigation</h4>
+            <h4 className="text-sm font-semibold text-surface-50">Navigation</h4>
             <div className="mt-4 space-y-2">
               <Link href="/games" className="block text-sm text-surface-400 hover:text-brand-400">Jeux</Link>
               <Link href="/become-seller" className="block text-sm text-surface-400 hover:text-brand-400">Devenir vendeur</Link>
@@ -27,7 +24,7 @@ export function Footer() {
             </div>
           </div>
           <div>
-            <h4 className="text-sm font-semibold text-white">Contact</h4>
+            <h4 className="text-sm font-semibold text-surface-50">Contact</h4>
             <div className="mt-4 space-y-2">
               <p className="text-sm text-surface-400">support@topup.com</p>
               <p className="text-sm text-surface-400">+509 XXX XXX XXX</p>
@@ -35,7 +32,7 @@ export function Footer() {
             </div>
           </div>
           <div>
-            <h4 className="text-sm font-semibold text-white">Réseaux</h4>
+            <h4 className="text-sm font-semibold text-surface-50">Réseaux</h4>
             <div className="mt-4 space-y-2">
               <p className="text-sm text-surface-400">Suivez-nous sur les réseaux sociaux</p>
               <div className="flex gap-2">

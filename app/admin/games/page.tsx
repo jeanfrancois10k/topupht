@@ -43,7 +43,7 @@ export default function AdminGamesPage() {
   return (
     <div className="space-y-8 p-4">
       <div>
-        <h1 className="text-3xl font-bold text-white">Gestion des jeux</h1>
+        <h1 className="text-3xl font-bold text-surface-50">Gestion des jeux</h1>
         <p className="mt-1 text-surface-400">{games.length} jeu(x) dans la base</p>
       </div>
 
@@ -57,7 +57,7 @@ export default function AdminGamesPage() {
                     <Gamepad2 className="h-5 w-5 text-brand-400" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-white">{game.name}</h3>
+                    <h3 className="text-sm font-semibold text-surface-50">{game.name}</h3>
                     <p className="text-xs text-surface-400">{game.slug}</p>
                   </div>
                 </div>

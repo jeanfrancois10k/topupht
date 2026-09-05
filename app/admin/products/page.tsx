@@ -43,7 +43,7 @@ export default function AdminProductsPage() {
   return (
     <div className="space-y-8 p-4">
       <div>
-        <h1 className="text-3xl font-bold text-white">Gestion des produits</h1>
+        <h1 className="text-3xl font-bold text-surface-50">Gestion des produits</h1>
         <p className="mt-1 text-surface-400">{products.length} produit(s)</p>
       </div>
 
@@ -53,7 +53,7 @@ export default function AdminProductsPage() {
             <CardContent className="p-5">
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-sm font-semibold text-white">{product.name}</h3>
+                  <h3 className="text-sm font-semibold text-surface-50">{product.name}</h3>
                   <p className="text-xs text-surface-400">{product.sku}</p>
                 </div>
                 <Badge variant={product.status === "ACTIVE" ? "success" : "default"}>{product.status}</Badge>

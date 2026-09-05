@@ -77,7 +77,7 @@ export default function AdminDashboardPage() {
   return (
     <div className="space-y-8 p-4">
       <div>
-        <h1 className="text-3xl font-bold text-white">Tableau de bord Admin</h1>
+        <h1 className="text-3xl font-bold text-surface-50">Tableau de bord Admin</h1>
         <p className="mt-1 text-surface-400">Vue d'ensemble de la plateforme</p>
       </div>
 
@@ -107,12 +107,12 @@ export default function AdminDashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              <a href="/admin/games" className="block rounded-lg bg-surface-700 p-3 text-sm font-medium text-white hover:bg-surface-600">Gérer les jeux</a>
-              <a href="/admin/products" className="block rounded-lg bg-surface-700 p-3 text-sm font-medium text-white hover:bg-surface-600">Gérer les produits</a>
-              <a href="/admin/users" className="block rounded-lg bg-surface-700 p-3 text-sm font-medium text-white hover:bg-surface-600">Gérer les utilisateurs</a>
-              <a href="/admin/sellers" className="block rounded-lg bg-surface-700 p-3 text-sm font-medium text-white hover:bg-surface-600">Gérer les vendeurs</a>
-              <a href="/admin/orders" className="block rounded-lg bg-surface-700 p-3 text-sm font-medium text-white hover:bg-surface-600">Gérer les commandes</a>
-              <a href="/admin/settings" className="block rounded-lg bg-surface-700 p-3 text-sm font-medium text-white hover:bg-surface-600">Paramètres</a>
+              <a href="/admin/games" className="block rounded-lg bg-surface-700 p-3 text-sm font-medium text-surface-50 hover:bg-surface-600">Gérer les jeux</a>
+              <a href="/admin/products" className="block rounded-lg bg-surface-700 p-3 text-sm font-medium text-surface-50 hover:bg-surface-600">Gérer les produits</a>
+              <a href="/admin/users" className="block rounded-lg bg-surface-700 p-3 text-sm font-medium text-surface-50 hover:bg-surface-600">Gérer les utilisateurs</a>
+              <a href="/admin/sellers" className="block rounded-lg bg-surface-700 p-3 text-sm font-medium text-surface-50 hover:bg-surface-600">Gérer les vendeurs</a>
+              <a href="/admin/orders" className="block rounded-lg bg-surface-700 p-3 text-sm font-medium text-surface-50 hover:bg-surface-600">Gérer les commandes</a>
+              <a href="/admin/settings" className="block rounded-lg bg-surface-700 p-3 text-sm font-medium text-surface-50 hover:bg-surface-600">Paramètres</a>
             </div>
           </CardContent>
         </Card>

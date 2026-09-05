@@ -66,13 +66,13 @@ export default function SellerWithdrawalsPage() {
   return (
     <div className="space-y-8 p-4">
       <div>
-        <h1 className="text-3xl font-bold text-white">Retraits</h1>
+        <h1 className="text-3xl font-bold text-surface-50">Retraits</h1>
         <p className="mt-1 text-surface-400">Demandez le retrait de vos fonds</p>
       </div>
 
       <Card className="border-surface-700 bg-surface-800">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-white">
+          <CardTitle className="flex items-center gap-2 text-surface-50">
             <WalletIcon className="h-5 w-5 text-brand-400" />
             Nouvelle demande de retrait
           </CardTitle>
@@ -91,7 +91,7 @@ export default function SellerWithdrawalsPage() {
       </Card>
 
       <div>
-        <h2 className="text-xl font-semibold text-white">Historique des retraits</h2>
+        <h2 className="text-xl font-semibold text-surface-50">Historique des retraits</h2>
       </div>
 
       {withdrawals.length === 0 ? (
@@ -109,7 +109,7 @@ export default function SellerWithdrawalsPage() {
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="flex items-center gap-2">
-                      <p className="text-sm font-semibold text-white">{formatCurrency(withdrawal.amount, withdrawal.currency as any as any as any)}</p>
+                      <p className="text-sm font-semibold text-surface-50">{formatCurrency(withdrawal.amount, withdrawal.currency as any as any as any)}</p>
                       <Badge className={getStatusColor(withdrawal.status)}>{withdrawal.status}</Badge>
                     </div>
                     <p className="mt-1 text-xs text-surface-400">{withdrawal.method}</p>

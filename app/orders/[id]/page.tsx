@@ -48,7 +48,7 @@ export default function OrderDetailPage() {
         <Card className="w-full max-w-md border-surface-700 bg-surface-800 text-center">
           <CardContent className="p-8">
             <ShoppingBag className="mx-auto h-12 w-12 text-surface-600" />
-            <h2 className="mt-4 text-xl font-bold text-white">Commande non trouvée</h2>
+            <h2 className="mt-4 text-xl font-bold text-surface-50">Commande non trouvée</h2>
             <p className="mt-2 text-surface-400">Cette commande n'existe pas ou a été supprimée.</p>
             <Link href="/orders" className="mt-4 inline-block">
               <Button variant="outline">Retour aux commandes</Button>
@@ -68,7 +68,7 @@ export default function OrderDetailPage() {
           </Button>
         </Link>
         <div>
-          <h1 className="text-3xl font-bold text-white">Commande {order.order_number}</h1>
+          <h1 className="text-3xl font-bold text-surface-50">Commande {order.order_number}</h1>
           <p className="mt-1 text-surface-400">Créée le {new Date(order.created_at).toLocaleDateString("fr-HT")}</p>
         </div>
       </div>
@@ -91,15 +91,15 @@ export default function OrderDetailPage() {
             </div>
             <div className="flex justify-between">
               <span className="text-surface-400">Jeu</span>
-              <span className="text-white">{order.product_id}</span>
+              <span className="text-surface-50">{order.product_id}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-surface-400">Joueur</span>
-              <span className="text-white">{order.player_id ?? "Non renseigné"}</span>
+              <span className="text-surface-50">{order.player_id ?? "Non renseigné"}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-surface-400">Serveur</span>
-              <span className="text-white">{order.server_id ?? "Non spécifié"}</span>
+              <span className="text-surface-50">{order.server_id ?? "Non spécifié"}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-surface-400">IDempotency</span>
@@ -117,7 +117,7 @@ export default function OrderDetailPage() {
               <div className="space-y-4">
                 <div className="flex justify-between">
                   <span className="text-surface-400">Méthode</span>
-                  <span className="text-white">{order.payment.provider_name}</span>
+                  <span className="text-surface-50">{order.payment.provider_name}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-surface-400">Statut</span>

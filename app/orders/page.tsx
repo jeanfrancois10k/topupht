@@ -46,7 +46,7 @@ export default function OrdersPage() {
   return (
     <div className="space-y-8 p-4">
       <div>
-        <h1 className="text-3xl font-bold text-white">Mes commandes</h1>
+        <h1 className="text-3xl font-bold text-surface-50">Mes commandes</h1>
         <p className="mt-1 text-surface-400">{orders.length} commande(s) trouvée(s)</p>
       </div>
 
@@ -64,12 +64,12 @@ export default function OrdersPage() {
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm font-semibold text-white">{order.order_number}</p>
+                    <p className="text-sm font-semibold text-surface-50">{order.order_number}</p>
                     <p className="text-xs text-surface-400">{order.product_id}</p>
                   </div>
                   <div className="text-right">
                     <Badge className={order.status === "SUCCESS" ? "bg-green-500/20 text-green-400" : order.status === "PROCESSING" ? "bg-blue-500/20 text-blue-400" : "bg-yellow-500/20 text-yellow-400"}>{order.status}</Badge>
-                    <p className="mt-1 text-sm font-bold text-white">{formatCurrency(order.amount, order.currency as any as any)}</p>
+                    <p className="mt-1 text-sm font-bold text-surface-50">{formatCurrency(order.amount, order.currency as any as any)}</p>
                   </div>
                 </div>
               </CardContent>

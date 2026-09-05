@@ -8,12 +8,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const buttonVariants = {
-  primary: "bg-brand-600 hover:bg-brand-700 text-white shadow-lg shadow-brand-600/25",
+  primary: "bg-brand-600 hover:bg-brand-700 text-surface-50 shadow-lg shadow-brand-600/25",
   secondary: "bg-surface-700 hover:bg-surface-600 text-surface-100",
   outline: "border border-surface-500 hover:bg-surface-800 text-surface-200",
   ghost: "hover:bg-surface-800 text-surface-300 hover:text-surface-100",
-  danger: "bg-red-600 hover:bg-red-700 text-white shadow-lg shadow-red-600/25",
-  success: "bg-htg-600 hover:bg-htg-700 text-white shadow-lg shadow-htg-600/25",
+  danger: "bg-red-600 hover:bg-red-700 text-surface-50 shadow-lg shadow-red-600/25",
+  success: "bg-htg-600 hover:bg-htg-700 text-surface-50 shadow-lg shadow-htg-600/25",
 };
 
 const buttonSizes = {

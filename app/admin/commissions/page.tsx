@@ -42,7 +42,7 @@ export default function AdminCommissionsPage() {
   return (
     <div className="space-y-8 p-4">
       <div>
-        <h1 className="text-3xl font-bold text-white">Commissions</h1>
+        <h1 className="text-3xl font-bold text-surface-50">Commissions</h1>
         <p className="mt-1 text-surface-400">{commissions.length} commission(s) — Total: {formatCurrency(commissions.reduce((sum, c) => sum + parseFloat(c.amount), 0))}</p>
       </div>
 
@@ -66,19 +66,19 @@ export default function AdminCommissionsPage() {
                 <div className="mt-4 space-y-2">
                   <div className="flex justify-between">
                     <span className="text-sm text-surface-400">Vendeur</span>
-                    <span className="text-sm text-white">{commission.seller_id}</span>
+                    <span className="text-sm text-surface-50">{commission.seller_id}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-sm text-surface-400">Commande</span>
-                    <span className="text-sm text-white">{commission.order_id}</span>
+                    <span className="text-sm text-surface-50">{commission.order_id}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-sm text-surface-400">Montant</span>
-                    <span className="text-sm text-white font-bold">{formatCurrency(commission.amount)}</span>
+                    <span className="text-sm text-surface-50 font-bold">{formatCurrency(commission.amount)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-sm text-surface-400">Taux</span>
-                    <span className="text-sm text-white">{commission.rate}</span>
+                    <span className="text-sm text-surface-50">{commission.rate}</span>
                   </div>
                 </div>
               </CardContent>

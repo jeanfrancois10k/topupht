@@ -13,7 +13,7 @@ export function WhyChooseUs() {
   return (
     <section className="border-t border-surface-800 bg-surface-950 py-16">
       <div className="container-custom">
-        <h2 className="text-3xl font-bold text-white text-center mb-12">Pourquoi choisir TOPUP+</h2>
+        <h2 className="text-3xl font-bold text-surface-50 text-center mb-12">Pourquoi choisir TOPUP+</h2>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((feature) => {
             const Icon = feature.icon;
@@ -22,7 +22,7 @@ export function WhyChooseUs() {
                 <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-htg-600/20 text-htg-400 mb-4">
                   <Icon className="h-7 w-7" />
                 </div>
-                <h3 className="text-lg font-semibold text-white">{feature.title}</h3>
+                <h3 className="text-lg font-semibold text-surface-50">{feature.title}</h3>
                 <p className="mt-2 text-sm text-surface-400">{feature.description}</p>
               </div>
             );

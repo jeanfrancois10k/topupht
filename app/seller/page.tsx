@@ -56,7 +56,7 @@ export default function SellerDashboardPage() {
         <Card className="w-full max-w-md border-surface-700 bg-surface-800 text-center">
           <CardContent className="p-8">
             <Tag className="mx-auto h-12 w-12 text-surface-600" />
-            <h2 className="mt-4 text-xl font-bold text-white">{sellerProfile ? "En attente d'approbation" : "Accès vendeur requis"}</h2>
+            <h2 className="mt-4 text-xl font-bold text-surface-50">{sellerProfile ? "En attente d'approbation" : "Accès vendeur requis"}</h2>
             <p className="mt-2 text-surface-400">{sellerProfile ? "Votre profil vendeur est en attente de validation par l'administration." : "Demandez à devenir vendeur pour accéder au tableau de bord."}</p>
           </CardContent>
         </Card>
@@ -67,7 +67,7 @@ export default function SellerDashboardPage() {
   return (
     <div className="space-y-8 p-4">
       <div>
-        <h1 className="text-3xl font-bold text-white">Dashboard Vendeur</h1>
+        <h1 className="text-3xl font-bold text-surface-50">Dashboard Vendeur</h1>
         <p className="mt-1 text-surface-400">Bienvenue, {sellerProfile.business_name ?? sellerProfile.user_id}</p>
       </div>
 
@@ -77,7 +77,7 @@ export default function SellerDashboardPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-surface-400">Solde</p>
-                <p className="mt-1 text-2xl font-bold text-white">{formatCurrency(stats.currentBalance, "HTG")}</p>
+                <p className="mt-1 text-2xl font-bold text-surface-50">{formatCurrency(stats.currentBalance, "HTG")}</p>
               </div>
               <WalletIcon className="h-8 w-8 text-brand-400" />
             </div>
@@ -88,7 +88,7 @@ export default function SellerDashboardPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-surface-400">Ventes totales</p>
-                <p className="mt-1 text-2xl font-bold text-white">{formatCurrency(stats.totalSales.toString(), "HTG")}</p>
+                <p className="mt-1 text-2xl font-bold text-surface-50">{formatCurrency(stats.totalSales.toString(), "HTG")}</p>
               </div>
               <ShoppingBag className="h-8 w-8 text-htg-400" />
             </div>
@@ -99,7 +99,7 @@ export default function SellerDashboardPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-surface-400">Commandes</p>
-                <p className="mt-1 text-2xl font-bold text-white">{stats.totalOrders}</p>
+                <p className="mt-1 text-2xl font-bold text-surface-50">{stats.totalOrders}</p>
               </div>
               <Activity className="h-8 w-8 text-indigo-400" />
             </div>
@@ -110,7 +110,7 @@ export default function SellerDashboardPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-surface-400">Commissions</p>
-                <p className="mt-1 text-2xl font-bold text-white">{formatCurrency(stats.totalCommissions.toString(), "HTG")}</p>
+                <p className="mt-1 text-2xl font-bold text-surface-50">{formatCurrency(stats.totalCommissions.toString(), "HTG")}</p>
               </div>
               <Tag className="h-8 w-8 text-yellow-400" />
             </div>
@@ -125,15 +125,15 @@ export default function SellerDashboardPage() {
         <CardContent>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <a href="/seller/products" className="rounded-lg bg-surface-800 p-4 border border-surface-700 transition-colors hover:border-brand-500/50">
-              <p className="text-sm font-semibold text-white">Mes produits</p>
+              <p className="text-sm font-semibold text-surface-50">Mes produits</p>
               <p className="text-xs text-surface-400">Voir et gérer vos produits</p>
             </a>
             <a href="/seller/orders" className="rounded-lg bg-surface-800 p-4 border border-surface-700 transition-colors hover:border-brand-500/50">
-              <p className="text-sm font-semibold text-white">Mes commandes</p>
+              <p className="text-sm font-semibold text-surface-50">Mes commandes</p>
               <p className="text-xs text-surface-400">Voir l'historique des commandes</p>
             </a>
             <a href="/seller/wallet" className="rounded-lg bg-surface-800 p-4 border border-surface-700 transition-colors hover:border-brand-500/50">
-              <p className="text-sm font-semibold text-white">Portefeuille</p>
+              <p className="text-sm font-semibold text-surface-50">Portefeuille</p>
               <p className="text-xs text-surface-400">Déposer et gérer votre solde</p>
             </a>
           </div>

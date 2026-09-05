@@ -81,10 +81,7 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
       {/* Header */}
       <header className="sticky top-0 z-50 flex h-16 items-center justify-between border-b border-surface-700 bg-surface-900 px-4 lg:px-6">
         <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600">
-            <Gamepad2 className="h-5 w-5 text-white" />
-          </div>
-          <span className="text-sm font-bold text-white">TOPUP+</span>
+          <img src="/logo.png" alt="TOPUP+" className="h-8 object-contain" />
         </Link>
 
         {/* Desktop nav */}
@@ -132,7 +129,7 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
       {/* Mobile menu overlay */}
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
-          <div className="fixed inset-0 bg-black/50" onClick={() => setMobileMenuOpen(false)} />
+          <div className="fixed inset-0 bg-surface-950" onClick={() => setMobileMenuOpen(false)} />
           <div className="fixed left-0 top-16 bottom-0 w-64 bg-surface-900 border-r border-surface-700 overflow-y-auto p-4 space-y-2">
             <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(false)} className="absolute right-2 top-2 h-8 w-8 text-surface-400">
               <X className="h-4 w-4" />
@@ -186,7 +183,7 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
               ))}
             </nav>
 
-            <button onClick={() => setSidebarCollapsed(!sidebarCollapsed)} className="absolute -right-3 top-16 flex h-6 w-6 items-center justify-center rounded-full border border-surface-700 bg-surface-800 text-surface-400 hover:text-white">
+            <button onClick={() => setSidebarCollapsed(!sidebarCollapsed)} className="absolute -right-3 top-16 flex h-6 w-6 items-center justify-center rounded-full border border-surface-700 bg-surface-800 text-surface-400 hover:text-surface-50">
               {sidebarCollapsed ? <ChevronRight className="h-3 w-3" /> : <ChevronLeft className="h-3 w-3" />}
             </button>
           </aside>
@@ -195,7 +192,7 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
         {/* Mobile bottom nav */}
         {isAuthenticated && (
           <nav className="fixed bottom-0 left-0 right-0 z-50 flex items-center justify-around border-t border-surface-700 bg-surface-900 py-1 md:hidden">
-            {gamerLinks.slice(0, 5).map((link) => (
+            {(isAdmin ? adminLinks.slice(0, 5) : isSeller ? sellerLinks.slice(0, 5) : gamerLinks.slice(0, 5)).map((link) => (
               <NavLink key={link.href} href={link.href} icon={link.icon} className="flex flex-col items-center gap-0.5 py-1 px-2 text-[10px]">
                 <span className="text-[9px]">{link.label}</span>
               </NavLink>

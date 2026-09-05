@@ -31,7 +31,7 @@ export function ProtectedRoute({ children, requireRole }: { children: React.Reac
       return (
         <div className="flex min-h-[60vh] items-center justify-center">
           <div className="text-center">
-            <p className="text-xl font-bold text-white">Accès refusé</p>
+            <p className="text-xl font-bold text-surface-50">Accès refusé</p>
             <p className="mt-2 text-surface-400">Vous n'avez pas la permission d'accéder à cette page.</p>
           </div>
         </div>
