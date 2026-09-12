@@ -6,10 +6,12 @@ import { supabaseClient } from "@/config/supabase";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Spinner } from "@/components/ui/spinner";
+import { Button } from "@/components/ui/button";
 import { formatCurrency } from "@/lib/utils";
 import { WalletIcon, ArrowDownCircle, ArrowUpCircle } from "lucide-react";
 import type { Wallet, WalletTransaction } from "@/types/shared";
 import { useAuth } from "@/hooks/use-auth";
+import Link from "next/link";
 
 export default function WalletPage() {
   const { profile } = useAuth();
@@ -61,10 +63,15 @@ export default function WalletPage() {
               <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-brand-600/20">
                 <WalletIcon className="h-7 w-7 text-brand-400" />
               </div>
-              <div>
+              <div className="flex-1">
                 <p className="text-sm text-surface-400">Solde disponible</p>
                 <p className="mt-1 text-3xl font-bold text-surface-50">{wallet ? formatCurrency(wallet.balance, wallet.currency as any) : "0 HTG"}</p>
               </div>
+              <Link href="/wallet/deposit">
+                <Button className="bg-htg-500 hover:bg-htg-600 text-white font-bold h-11 px-6 rounded-xl">
+                  Recharger
+                </Button>
+              </Link>
             </div>
           </CardContent>
         </Card>

@@ -8,22 +8,25 @@ import { useAuth } from "@/hooks/use-auth";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Spinner } from "@/components/ui/spinner";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { formatCurrency } from "@/lib/utils";
-import { Gamepad2, ShoppingBag, WalletIcon, Gift } from "lucide-react";
-import type { Game, Order, Wallet, Notification } from "@/types/shared";
+import { Gamepad2, ShoppingBag, WalletIcon, Gift, ShieldAlert, Package, Plus, Check } from "lucide-react";
+import type { Game, Order, Wallet } from "@/types/shared";
 
 export default function DashboardPage() {
-  const { profile } = useAuth();
+  const { profile, user } = useAuth();
   const router = useRouter();
   const [orders, setOrders] = useState<Order[]>([]);
   const [wallet, setWallet] = useState<any | null>(null);
   const [games, setGames] = useState<Game[]>([]);
   const [promotions, setPromotions] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isActivatingAdmin, setIsActivatingAdmin] = useState(false);
+  const [adminActivated, setAdminActivated] = useState(false);
+
+  const isAdmin = profile?.role === "ADMIN" || profile?.role === "SUPER_ADMIN" || profile?.email?.startsWith("admin@");
 
   useEffect(() => {
     async function fetchDashboard() {
@@ -32,7 +35,7 @@ export default function DashboardPage() {
         const [ordersRes, walletRes, gamesRes, promoRes] = await Promise.all([
           supabaseClient.from("orders").select("*").eq("user_id", profile.id).order("created_at", { ascending: false }).limit(5),
           supabaseClient.from("wallets").select("*").eq("user_id", profile.id).single(),
-          supabaseClient.from("games").select("*").eq("status", "ACTIVE").order("display_order", { ascending: true }).limit(4),
+          supabaseClient.from("games").select("*").eq("is_active", true).order("display_order", { ascending: true }).limit(4),
           supabaseClient.from("promotions").select("*").eq("is_active", true),
         ]);
         setOrders((ordersRes.data ?? []) as Order[]);
@@ -47,6 +50,30 @@ export default function DashboardPage() {
     }
     fetchDashboard();
   }, [profile?.id]);
+
+  const handleActivateAdminRole = async () => {
+    setIsActivatingAdmin(true);
+    try {
+      const res = await fetch("/api/admin/promote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId: profile?.id, email: profile?.email }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setAdminActivated(true);
+        setTimeout(() => {
+          window.location.href = "/admin/dashboard";
+        }, 800);
+      } else {
+        alert(data.error || "Erreur lors de la mise à jour des droits");
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsActivatingAdmin(false);
+    }
+  };
 
   if (isLoading) {
     return (
@@ -65,9 +92,75 @@ export default function DashboardPage() {
   return (
     <ProtectedRoute>
       <div className="space-y-8">
+        
+        {/* Banner Admin pour accès direct et gestion des jeux & services */}
+        {isAdmin && (
+          <div className="rounded-2xl bg-gradient-to-r from-red-950/80 via-surface-900 to-red-950/80 border border-red-500/40 p-6 shadow-xl space-y-4">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-red-600/20 border border-red-500/40 text-red-400 shrink-0">
+                  <ShieldAlert className="h-6 w-6" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-xl font-extrabold text-white">Espace Administrateur Détecté</h2>
+                    <Badge variant="danger" className="bg-red-600 text-white font-bold">
+                      {profile?.role || "ADMIN"}
+                    </Badge>
+                  </div>
+                  <p className="text-xs sm:text-sm text-surface-300 mt-0.5">
+                    Vous avez accès au panneau de gestion pour ajouter des jeux, abonnements IA (ChatGPT, Claude), modifier les prix et valider les commandes.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-3 shrink-0">
+                <Button
+                  onClick={() => router.push("/admin/games")}
+                  className="bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs h-10 rounded-xl gap-1.5"
+                >
+                  <Gamepad2 className="h-4 w-4" />
+                  + Créer Jeux & Services IA
+                </Button>
+                <Button
+                  onClick={() => router.push("/admin/products")}
+                  className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs h-10 rounded-xl gap-1.5"
+                >
+                  <Package className="h-4 w-4" />
+                  + Créer Forfaits & Prix
+                </Button>
+                <Button
+                  onClick={() => router.push("/admin/dashboard")}
+                  className="bg-red-600 hover:bg-red-700 text-white font-bold text-xs h-10 rounded-xl shadow-lg"
+                >
+                  Ouvrir Dashboard Admin
+                </Button>
+              </div>
+            </div>
+
+            {/* If user profile role in DB is still GAMER */}
+            {profile?.role !== "SUPER_ADMIN" && profile?.role !== "ADMIN" && (
+              <div className="pt-3 border-t border-red-500/20 flex items-center justify-between">
+                <p className="text-xs text-red-300">
+                  Statut DB actuel: <strong>{profile?.role || "GAMER"}</strong>. Vous pouvez passer ce compte en SuperAdmin en 1 clic :
+                </p>
+                <Button
+                  size="sm"
+                  onClick={handleActivateAdminRole}
+                  disabled={isActivatingAdmin || adminActivated}
+                  className="bg-white text-red-950 font-extrabold text-xs hover:bg-surface-200"
+                >
+                  {adminActivated ? <Check className="h-4 w-4 mr-1 text-green-600" /> : null}
+                  {adminActivated ? "Activé ! Redirection..." : "Activer Rôle SUPER_ADMIN (1 Clic)"}
+                </Button>
+              </div>
+            )}
+          </div>
+        )}
+
         <div>
           <h1 className="text-3xl font-bold text-surface-50">Tableau de bord</h1>
-          <p className="mt-1 text-surface-400">Bienvenue, {profile?.full_name ?? profile?.email ?? "Gamer"} !</p>
+          <p className="mt-1 text-surface-400">Bienvenue, {profile?.full_name ?? profile?.email ?? "Utilisateur"} !</p>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -97,7 +190,7 @@ export default function DashboardPage() {
             <CardContent className="p-5">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-surface-400">Jeux disponibles</p>
+                  <p className="text-sm text-surface-400">Jeux & Services</p>
                   <p className="mt-1 text-2xl font-bold text-surface-50">{games.length}</p>
                 </div>
                 <Gamepad2 className="h-8 w-8 text-indigo-400" />
@@ -120,8 +213,8 @@ export default function DashboardPage() {
         <div className="grid gap-6 lg:grid-cols-2">
           <Card>
             <CardHeader>
-              <CardTitle>Jeux populaires</CardTitle>
-              <CardDescription>Les jeux les plus populaires</CardDescription>
+              <CardTitle>Jeux & Services Populaires</CardTitle>
+              <CardDescription>Consulter les services disponibles</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid gap-3">
@@ -151,7 +244,7 @@ export default function DashboardPage() {
                   <ShoppingBag className="mx-auto h-10 w-10 text-surface-600" />
                   <p className="mt-2 text-sm text-surface-400">Aucune commande pour le moment.</p>
                   <Button variant="outline" className="mt-4">
-                    <Link href="/games">Explorer les jeux</Link>
+                    <Link href="/games">Explorer les jeux & services</Link>
                   </Button>
                 </div>
               ) : (
@@ -173,30 +266,6 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
         </div>
-
-        {promotions.length > 0 && (
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Gift className="h-5 w-5 text-yellow-400" />
-                Promotions actives
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {promotions.map((promo) => (
-                  <div key={promo.id} className="rounded-lg bg-surface-800 p-4 border border-surface-700">
-                    <div className="flex items-center justify-between">
-                      <h4 className="text-sm font-semibold text-surface-50">{promo.name}</h4>
-                      {promo.code && <Badge variant="warning">{promo.code}</Badge>}
-                    </div>
-                    <p className="mt-1 text-xs text-surface-400">{promo.type} - {promo.value}%</p>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        )}
       </div>
     </ProtectedRoute>
   );

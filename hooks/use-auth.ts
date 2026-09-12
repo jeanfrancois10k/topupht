@@ -2,7 +2,6 @@
 "use client";
 
 import { useEffect, useCallback, useState } from "react";
-import { createClient } from "@supabase/supabase-js";
 import { useAuthStore } from "@/stores/auth-store";
 import { type User, type Profile } from "@/types/shared";
 import { supabaseClient } from "@/config/supabase";
@@ -10,6 +9,58 @@ import { supabaseClient } from "@/config/supabase";
 export function useAuth() {
   const { user, profile, isLoading, isAuthenticated, setUser, setProfile, setLoading } = useAuthStore();
   const [error, setError] = useState<string | null>(null);
+
+  const syncUser = useCallback(async (supabaseUser: any) => {
+    if (!supabaseUser) {
+      setUser(null);
+      setProfile(null);
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const { data, error } = await supabaseClient
+        .from("profiles")
+        .select("*")
+        .eq("id", supabaseUser.id)
+        .single();
+
+      const userObj = {
+        id: supabaseUser.id,
+        email: supabaseUser.email,
+        phone: null,
+        full_name: data?.full_name ?? null,
+        avatar_url: data?.avatar_url ?? null,
+        role: data?.role ?? "GAMER",
+        status: data?.status ?? "ACTIVE",
+        created_at: data?.created_at ?? new Date().toISOString(),
+        updated_at: data?.updated_at ?? new Date().toISOString(),
+      };
+
+      const profileObj = {
+        id: data?.id ?? supabaseUser.id,
+        email: supabaseUser.email,
+        phone: data?.phone ?? null,
+        full_name: data?.full_name ?? null,
+        avatar_url: data?.avatar_url ?? null,
+        role: data?.role ?? "GAMER",
+        status: data?.status ?? "ACTIVE",
+        created_at: data?.created_at ?? new Date().toISOString(),
+        updated_at: data?.updated_at ?? new Date().toISOString(),
+      };
+
+      setUser(userObj);
+      setProfile(profileObj);
+    } catch {
+      setUser({
+        id: supabaseUser.id,
+        email: supabaseUser.email,
+        role: "GAMER",
+      });
+    } finally {
+      setLoading(false);
+    }
+  }, [setUser, setProfile, setLoading]);
 
   useEffect(() => {
     let mounted = true;
@@ -28,49 +79,10 @@ export function useAuth() {
         } else {
           setLoading(false);
         }
-      } catch (err) {
+      } catch {
         if (!mounted) return;
-        setError("Erreur de chargement de la session");
         setLoading(false);
       }
-    }
-
-    async function syncUser(supabaseUser: any) {
-      const { data, error } = await supabaseClient
-        .from("profiles")
-        .select("*")
-        .eq("id", supabaseUser.id)
-        .single();
-
-      if (!mounted) return;
-      if (error) {
-        setLoading(false);
-        return;
-      }
-
-      setUser({
-        id: supabaseUser.id,
-        email: supabaseUser.email,
-        phone: null,
-        full_name: data?.full_name ?? null,
-        avatar_url: data?.avatar_url ?? null,
-        role: data?.role ?? "GAMER",
-        status: data?.status ?? "ACTIVE",
-        created_at: data?.created_at ?? new Date().toISOString(),
-        updated_at: data?.updated_at ?? new Date().toISOString(),
-      });
-      setProfile({
-        id: data?.id ?? supabaseUser.id,
-        email: supabaseUser.email,
-        phone: data?.phone ?? null,
-        full_name: data?.full_name ?? null,
-        avatar_url: data?.avatar_url ?? null,
-        role: data?.role ?? "GAMER",
-        status: data?.status ?? "ACTIVE",
-        created_at: data?.created_at ?? new Date().toISOString(),
-        updated_at: data?.updated_at ?? new Date().toISOString(),
-      });
-      setLoading(false);
     }
 
     getSession();
@@ -90,7 +102,7 @@ export function useAuth() {
       mounted = false;
       subscription.unsubscribe();
     };
-  }, []);
+  }, [syncUser, setLoading, setUser, setProfile]);
 
   const signUp = useCallback(async (email: string, password: string, fullName?: string, phone?: string) => {
     setError(null);
@@ -120,14 +132,16 @@ export function useAuth() {
     try {
       const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
       if (error) throw error;
-      await syncUser(data.user);
+      if (data.user) {
+        await syncUser(data.user);
+      }
       return { data, error: null };
     } catch (err) {
       const message = err instanceof Error ? err.message : "Erreur lors de la connexion";
       setError(message);
       return { data: null, error: message };
     }
-  }, []);
+  }, [syncUser]);
 
   const signOut = useCallback(async () => {
     setError(null);
@@ -141,7 +155,7 @@ export function useAuth() {
       const message = err instanceof Error ? err.message : "Erreur lors de la déconnexion";
       setError(message);
     }
-  }, []);
+  }, [setUser, setProfile, setLoading]);
 
   const resetPassword = useCallback(async (email: string) => {
     setError(null);
@@ -171,7 +185,7 @@ export function useAuth() {
       setError(message);
       return { data: null, error: message };
     }
-  }, [profile, user]);
+  }, [profile, user, setProfile]);
 
   return {
     user,
